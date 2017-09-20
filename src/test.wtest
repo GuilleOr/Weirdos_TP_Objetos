@@ -1,0 +1,10 @@
+import Musico.*
+
+test "Joaquin del grupo pimpinela tiene una habilidad de 25" {
+
+	var joaquin = new Musico()
+	
+	
+	
+
+}
