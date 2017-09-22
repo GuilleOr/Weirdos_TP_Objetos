@@ -1,10 +1,155 @@
 import Musico.*
+import Grupo.*
+import joaquin.*
+import lucia.*
+import Guitarra.*
+import luisAlberto.*
+import fender.*
+import gibson.*
+import Cancion.*
+
+object init {
+
+	method crearJoaquinDelGrupoPimpinela() {
+		var joaquin = new Musico()
+		joaquin.nombre("Joaquin")
+		joaquin.habilidad(20)
+		var pimpinela = new Grupo() pimpinela.nombre("pimpinela")
+		pimpinela.agregarIntegrante(joaquin)
+		joaquin.grupo(pimpinela)
+		return joaquin
+	}
+
+	//	method guitarraFender(){
+	//		var guitarra =  new Guitarra()
+	//		guitarra.modelo("Fender")
+	//		guitarra.costo(10)
+	//		guitarra.estado("nueva")
+	//		return guitarra		
+	//	}
+	//	
+	//	method guitarraGibson(){
+	//		var guitarra =  new Guitarra()
+	//		guitarra.modelo("Gibson")
+	//		guitarra.costo(10)
+	//		guitarra.estado("nueva")
+	//		return guitarra		
+	//	}
+	method cancionCisne() {
+		var cancionCisne = new Cancion()
+		cancionCisne.duracion(312)
+		cancionCisne.letra("Hoy el viento se abrio quedo vacio el aire una vez mas y el manantial broto y nadie esta aqui
+		 y puedo ver que solo estallan las hojas al brillar")
+		return cancionCisne
+	}
+
+	method cancionLaFamilia() {
+		var cancionLaFamilia = new Cancion()
+		cancionLaFamilia.duracion(264)
+		cancionLaFamilia.letra("Quiero brindar por mi gente sencilla, por el amor brindo por la familia")
+		return cancionLaFamilia
+	}
+}
 
 test "Joaquin del grupo pimpinela tiene una habilidad de 25" {
 
-	var joaquin = new Musico()
-	
-	
-	
+	var pimpinela = new Grupo()
+	pimpinela.nombre("pimpinela")
+	pimpinela.agregarIntegrante(joaquin)
+	joaquin.grupo(pimpinela)
+
+	assert.equals(25, joaquin.habilidad())
 
 }
+
+test "Joaquin abandona pimpinela por lo que tiene una habilidad de 20" {
+
+	var pimpinela = new Grupo()
+	pimpinela.nombre("pimpinela")
+	pimpinela.agregarIntegrante(joaquin)
+	joaquin.grupo(pimpinela)
+
+	joaquin.serSolista()
+	assert.equals(20, joaquin.habilidad())
+}
+
+test "Lucia canta en el grupo pimpinela y tiene una habilidad de 50" {
+
+	var pimpinela = new Grupo()
+	pimpinela.nombre("pimpinela")
+	pimpinela.agregarIntegrante(lucia)
+	lucia.grupo(pimpinela)
+
+	assert.equals(50, lucia.habilidad())
+}
+
+test "Lucia abandona pimpinela por lo que tiene una habilidad de 70" {
+
+	var pimpinela = new Grupo()
+	pimpinela.nombre("pimpinela")
+	pimpinela.agregarIntegrante(lucia)
+	lucia.grupo(pimpinela)
+
+	lucia.serSolista()
+	assert.equals(70, lucia.habilidad())
+}
+
+test "luis alberto toca con una fender, su habilidad es de 100" {
+
+	luisAlberto.guitarra(fender)
+	assert.equals(80, luisAlberto.habilidad())
+
+}
+
+test "luis alberto toca con la gison sana y su habilidad es 100" {
+
+	luisAlberto.guitarra(gibson)
+	assert.equals(100, luisAlberto.habilidad())
+
+}
+
+test "luis alberto toca con la gibson rota y su habilidad es 40" {
+	gibson.tratarMal()
+	luisAlberto.guitarra(gibson)
+	assert.equals(40, luisAlberto.habilidad())
+}
+
+test "Joaquin no interpreta bien la cancion 'la familia'" {
+	var cancionLaFamilia = init.cancionLaFamilia()
+	assert.notThat(joaquin.interpretaBien(cancionLaFamilia))
+}
+
+test "Joaquin si interpreta bien la cancion 'cisne'" {
+	var cancionCisne = init.cancionCisne()
+	assert.that(joaquin.interpretaBien(cancionCisne))
+}
+
+test "Lucia interpreta bien la cancion La Familia" {
+	var cancionLaFamilia = init.cancionLaFamilia()
+	assert.that(lucia.interpretaBien(cancionLaFamilia))
+}
+
+test "Lucia no interpreta bien la cancion Cisne" {
+	var cancionCisne = init.cancionCisne()
+	assert.notThat(lucia.interpretaBien(cancionCisne))
+}
+
+test "Luis Alberto si interpreta bien la cancion La Familia" {
+	var cancionLaFamilia = init.cancionLaFamilia()
+	assert.that(luisAlberto.interpretaBien(cancionLaFamilia))
+}
+
+test "Luis Alberto si interpreta bien la cancion Cisne" {
+	var cancionCisne = init.cancionCisne()
+	assert.that(luisAlberto.interpretaBien(cancionCisne))
+}
+
+
+
+
+
+
+
+
+
+

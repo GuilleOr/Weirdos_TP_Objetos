@@ -5,11 +5,19 @@ class Grupo {
 
 	method integrantes() = integrantes
 
-	method abandonarGrupo(musico) {
+	method eliminarIntegrante(musico) {
 		self.integrantes().remove(musico)
 	}
 
-	method unirseAGrupo(musico) {
+	method agregarIntegrante(musico) {
 		self.integrantes().add(musico)
+	}
+	
+	method esMiembro(musico){
+		return integrantes.contains(musico)
+	}
+	
+	method nombre(_nombre){
+		nombre = _nombre
 	}
 }
