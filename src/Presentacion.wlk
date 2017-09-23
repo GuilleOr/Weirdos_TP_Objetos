@@ -20,5 +20,11 @@ class Presentacion {
 		self.artistas().add(artista)
 	}
 	
+	method eliminarArtista(artista){
+		self.artistas().remove(artista)
+	}
+	
 	method cantidadArtistas() = self.artistas().size()
+
+	method costo() = self.artistas().map({artista => artista.costo(self)}).sum()
 }

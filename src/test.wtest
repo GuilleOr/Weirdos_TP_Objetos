@@ -11,23 +11,21 @@ import laTrastienda.*
 
 object init {
 
-
-	//	method guitarraFender(){
-	//		var guitarra =  new Guitarra()
-	//		guitarra.modelo("Fender")
-	//		guitarra.costo(10)
-	//		guitarra.estado("nueva")
-	//		return guitarra		
-	//	}
-	//	
-	//	method guitarraGibson(){
-	//		var guitarra =  new Guitarra()
-	//		guitarra.modelo("Gibson")
-	//		guitarra.costo(10)
-	//		guitarra.estado("nueva")
-	//		return guitarra		
-	//	}
-
+//	method guitarraFender(){
+//		var guitarra =  new Guitarra()
+//		guitarra.modelo("Fender")
+//		guitarra.costo(10)
+//		guitarra.estado("nueva")
+//		return guitarra		
+//	}
+//	
+//	method guitarraGibson(){
+//		var guitarra =  new Guitarra()
+//		guitarra.modelo("Gibson")
+//		guitarra.costo(10)
+//		guitarra.estado("nueva")
+//		return guitarra		
+//	}
 	method cancionCisne() {
 		var cancionCisne = new Cancion()
 		cancionCisne.duracion(312)
@@ -42,15 +40,25 @@ object init {
 		cancionLaFamilia.letra("Quiero brindar por mi gente sencilla, por el amor brindo por la familia")
 		return cancionLaFamilia
 	}
-	
-	method presentacionLunaPark(){
+
+	method presentacionLunaPark() {
 		var presentacionLuna = new Presentacion()
 		presentacionLuna.lugar(lunaPark)
 		presentacionLuna.sumarArtista(joaquin)
 		presentacionLuna.sumarArtista(lucia)
 		presentacionLuna.sumarArtista(luisAlberto)
-		presentacionLuna.fecha(new Date(20,04,2017))
+		presentacionLuna.fecha(new Date(20, 04, 2017))
 		return presentacionLuna
+	}
+
+	method presentacionLaTrastienda() {
+		var presentacionLaTrastienda = new Presentacion()
+		presentacionLaTrastienda.lugar(laTrastienda)
+		presentacionLaTrastienda.sumarArtista(joaquin)
+		presentacionLaTrastienda.sumarArtista(lucia)
+		presentacionLaTrastienda.sumarArtista(luisAlberto)
+		presentacionLaTrastienda.fecha(new Date(15, 11, 2017))
+		return presentacionLaTrastienda
 	}
 }
 
@@ -147,12 +155,63 @@ test "Luis Alberto si interpreta bien la cancion Cisne" {
 	assert.that(luisAlberto.interpretaBien(cancionCisne))
 }
 
-test "Joaquin cobra 50 por presentarse en el luna park"{
-	
+test "Joaquin cobra 50 por presentarse en el luna park" {
+
 	var presentacionLuna = init.presentacionLunaPark()
 	assert.equals(50, joaquin.costo(presentacionLuna))
 }
 
+test "Joaquin cobra 100 por presentarse solo en la trastienda" {
+
+	var presentacionLaTrastienda = init.presentacionLaTrastienda()
+	presentacionLaTrastienda.eliminarArtista(luisAlberto)
+	presentacionLaTrastienda.eliminarArtista(lucia)
+
+	assert.equals(100, joaquin.costo(presentacionLaTrastienda))
+
+}
+
+test "La capacidad de la trastienda para el 5 de agosto de 2017 es 700" {
+
+	var fechaShow = new Date(05, 08, 2017)
+	assert.equals(700, laTrastienda.capacidad(fechaShow))
+}
+
+test "La capacidad de la trastienda para el 8 de agosto de 2017 es 400" {
+
+	var fechaShow = new Date(08, 08, 2017)
+	assert.equals(400, laTrastienda.capacidad(fechaShow))
+}
+
+test "Lucia cobra 500 por presentarse en el luna park " {
+	var presentacionLuna = init.presentacionLunaPark()
+	assert.equals(500, lucia.costo(presentacionLuna))
+}
+
+test "Lucia cobra 400 por presentarse en la trastienda" {
+	var presentacionLaTrastienda = init.presentacionLaTrastienda()
+	assert.equals(400, lucia.costo(presentacionLaTrastienda))
+}
+
+test "luis alberto cobra 1000 por presentarse en el luna park" {
+	var presentacionLuna = init.presentacionLunaPark()
+	assert.equals(1000, luisAlberto.costo(presentacionLuna))
+}
+
+test "luis alberto cobra 1200 por presentarse en la trastienda" {
+	var presentacionLaTrastienda = init.presentacionLaTrastienda()
+	assert.equals(1200, luisAlberto.costo(presentacionLaTrastienda))
+}
+
+test "el costo de la presentacion del luna park es 1550"{
+	var presentacionLuna = init.presentacionLunaPark()
+	assert.equals(1550, presentacionLuna.costo())
+}
+
+test"el costo de la presentacion de la trastienda es 1650"{
+	var presentacionLaTrastienda = init.presentacionLaTrastienda()
+	assert.equals(1650, presentacionLaTrastienda.costo())
+}
 
 
 
