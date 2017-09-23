@@ -18,8 +18,14 @@ object joaquin {
 	method serSolista() {
 		self.grupo().eliminarIntegrante(self)
 	}
-	
-	method interpretaBien(cancion) = cancion.duracion() > 300 
-		
-	
+
+	method interpretaBien(cancion) = cancion.duracion() > 300
+
+	method costo(presentacion) {
+		if (presentacion.artistas().contains(self)) {
+			if (presentacion.cantidadArtistas() > 1) {
+				return 50
+			}
+		} return 100
+	}
 }

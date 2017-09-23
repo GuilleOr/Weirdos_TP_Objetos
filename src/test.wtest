@@ -1,24 +1,16 @@
-import Musico.*
 import Grupo.*
 import joaquin.*
 import lucia.*
-import Guitarra.*
 import luisAlberto.*
 import fender.*
 import gibson.*
 import Cancion.*
+import Presentacion.*
+import lunaPark.*
+import laTrastienda.*
 
 object init {
 
-	method crearJoaquinDelGrupoPimpinela() {
-		var joaquin = new Musico()
-		joaquin.nombre("Joaquin")
-		joaquin.habilidad(20)
-		var pimpinela = new Grupo() pimpinela.nombre("pimpinela")
-		pimpinela.agregarIntegrante(joaquin)
-		joaquin.grupo(pimpinela)
-		return joaquin
-	}
 
 	//	method guitarraFender(){
 	//		var guitarra =  new Guitarra()
@@ -35,6 +27,7 @@ object init {
 	//		guitarra.estado("nueva")
 	//		return guitarra		
 	//	}
+
 	method cancionCisne() {
 		var cancionCisne = new Cancion()
 		cancionCisne.duracion(312)
@@ -48,6 +41,16 @@ object init {
 		cancionLaFamilia.duracion(264)
 		cancionLaFamilia.letra("Quiero brindar por mi gente sencilla, por el amor brindo por la familia")
 		return cancionLaFamilia
+	}
+	
+	method presentacionLunaPark(){
+		var presentacionLuna = new Presentacion()
+		presentacionLuna.lugar(lunaPark)
+		presentacionLuna.sumarArtista(joaquin)
+		presentacionLuna.sumarArtista(lucia)
+		presentacionLuna.sumarArtista(luisAlberto)
+		presentacionLuna.fecha(new Date(20,04,2017))
+		return presentacionLuna
 	}
 }
 
@@ -144,7 +147,11 @@ test "Luis Alberto si interpreta bien la cancion Cisne" {
 	assert.that(luisAlberto.interpretaBien(cancionCisne))
 }
 
-
+test "Joaquin cobra 50 por presentarse en el luna park"{
+	
+	var presentacionLuna = init.presentacionLunaPark()
+	assert.equals(50, joaquin.costo(presentacionLuna))
+}
 
 
 
