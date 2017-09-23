@@ -11,21 +11,6 @@ import laTrastienda.*
 
 object init {
 
-//	method guitarraFender(){
-//		var guitarra =  new Guitarra()
-//		guitarra.modelo("Fender")
-//		guitarra.costo(10)
-//		guitarra.estado("nueva")
-//		return guitarra		
-//	}
-//	
-//	method guitarraGibson(){
-//		var guitarra =  new Guitarra()
-//		guitarra.modelo("Gibson")
-//		guitarra.costo(10)
-//		guitarra.estado("nueva")
-//		return guitarra		
-//	}
 	method cancionCisne() {
 		var cancionCisne = new Cancion()
 		cancionCisne.duracion(312)

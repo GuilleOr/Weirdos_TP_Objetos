@@ -2,7 +2,6 @@
 object lucia {
 	var habilidad = 70
 	var grupo
-	var lala = "lalopondio"
 
 	method habilidad() {
 		if (self.grupo().esMiembro(self)) {
