@@ -1,15 +1,15 @@
 import estados.*
 
 object gibson {
-	var estado = "sana"
+	var sana = true
 
 	method precio() {
-		if (estado.equalsIgnoreCase("sana")) {
+		if (sana) {
 			return 15
 		} return 5
 	}
 	
 	method tratarMal(){
-		estado = "rota"
+		sana = false
 	}
 }
