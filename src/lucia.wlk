@@ -1,7 +1,7 @@
 
 object lucia {
 	var habilidad = 70
-	var grupo
+	var grupo 
 
 	method habilidad() {
 		if (self.grupo().esMiembro(self)) {
@@ -19,7 +19,7 @@ object lucia {
 		self.grupo().eliminarIntegrante(self)
 	}
 
-	method interpretaBien(cancion) = cancion.letra().contains("familia")
+	method interpretaBien(cancion) = cancion.letra().lowerCase().contains("familia")
 
 	method costo(presentacion) {
 		if (presentacion.lugar().capacidad(presentacion.fecha()) > 5000) {

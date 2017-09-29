@@ -1,12 +1,11 @@
 
 object joaquin {
-	var habilidad = 20
-	var grupo
+	var grupo 
 
 	method habilidad() {
-		if (self.grupo().esMiembro(self)) {
-			return habilidad + 5
-		} return habilidad
+		if (self.grupo() != null) {
+			return 20 + 5
+		} return 20
 	}
 
 	method grupo(_grupo) {
@@ -17,6 +16,7 @@ object joaquin {
 
 	method serSolista() {
 		self.grupo().eliminarIntegrante(self)
+		grupo = null
 	}
 
 	method interpretaBien(cancion) = cancion.duracion() > 300

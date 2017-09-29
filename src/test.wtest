@@ -79,6 +79,10 @@ test "Lucia canta en el grupo pimpinela y tiene una habilidad de 50" {
 	assert.equals(50, lucia.habilidad())
 }
 
+test "Joaquin sin grupo tiene que dar 20" {
+	assert.equals(20, joaquin.habilidad())
+}
+
 test "Lucia abandona pimpinela por lo que tiene una habilidad de 70" {
 
 	var pimpinela = new Grupo()
