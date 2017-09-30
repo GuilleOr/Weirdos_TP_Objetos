@@ -7,7 +7,8 @@ object luisAlberto {
 
 		if (precio >= 100) {
 			return 100
-		} return precio
+		}
+		return precio
 	}
 
 	method guitarra() = guitarra
@@ -21,6 +22,7 @@ object luisAlberto {
 	method costo(presentacion) {
 		if (presentacion.fecha().month() > 9) {
 			return 1200
-		} return 1000
+		}
+		return 1000
 	}
 }

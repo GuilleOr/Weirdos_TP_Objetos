@@ -19,23 +19,14 @@ class Presentacion {
 	method sumarArtista(artista) {
 		self.artistas().add(artista)
 	}
-	
+
 	method eliminarArtista(artista){
 		self.artistas().remove(artista)
 	}
-	
+
 	method cantidadArtistas() = self.artistas().size()
 
-//agrego gaston este metodo
 	method capacidad() = lugar.capacidad(fecha)
-	
-	method costo() = self.artistas().sum({ artista => artista.costo(self) }) 
 
-
-// cambiar lo de las guitarras. tratarlo como boolean
-//cambiar la bidireccion (mantener clase grupo ?)
-// que la presentacion sepa su capacidad (delegar)
-// sacar setters & getters que no se usan
-// ver lo de esMiembro()
-
+	method costo() = self.artistas().sum({ artista => artista.costo(self) })
 }

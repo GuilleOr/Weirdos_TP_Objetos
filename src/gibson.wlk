@@ -1,4 +1,3 @@
-import estados.*
 
 object gibson {
 	var sana = true
@@ -8,7 +7,7 @@ object gibson {
 			return 15
 		} return 5
 	}
-	
+
 	method tratarMal(){
 		sana = false
 	}

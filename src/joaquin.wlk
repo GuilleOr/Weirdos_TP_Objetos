@@ -1,11 +1,12 @@
 
 object joaquin {
-	var grupo 
+	var grupo = null
 
 	method habilidad() {
 		if (self.grupo() != null) {
 			return 20 + 5
-		} return 20
+		}
+		return 20
 	}
 
 	method grupo(_grupo) {
@@ -26,6 +27,7 @@ object joaquin {
 			if (presentacion.cantidadArtistas() > 1) {
 				return 50
 			}
-		} return 100
+		}
+		return 100
 	}
 }

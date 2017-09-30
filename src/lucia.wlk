@@ -6,7 +6,8 @@ object lucia {
 	method habilidad() {
 		if (self.grupo().esMiembro(self)) {
 			return habilidad - 20
-		} return habilidad
+		}
+		return habilidad
 	}
 
 	method grupo(_grupo) {
@@ -19,11 +20,12 @@ object lucia {
 		self.grupo().eliminarIntegrante(self)
 	}
 
-	method interpretaBien(cancion) = cancion.letra().lowerCase().contains("familia")
+	method interpretaBien(cancion) = cancion.letra().toLowerCase().contains("familia")
 
 	method costo(presentacion) {
 		if (presentacion.lugar().capacidad(presentacion.fecha()) > 5000) {
 			return 500
-		} return 400
+		}
+		return 400
 	}
 }

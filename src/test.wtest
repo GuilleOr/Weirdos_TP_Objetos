@@ -1,4 +1,3 @@
-import Grupo.*
 import joaquin.*
 import lucia.*
 import luisAlberto.*
@@ -8,6 +7,7 @@ import Cancion.*
 import Presentacion.*
 import lunaPark.*
 import laTrastienda.*
+import pimpinela.*
 
 object init {
 
@@ -49,19 +49,14 @@ object init {
 
 test "Joaquin del grupo pimpinela tiene una habilidad de 25" {
 
-	var pimpinela = new Grupo()
-	pimpinela.nombre("pimpinela")
 	pimpinela.agregarIntegrante(joaquin)
 	joaquin.grupo(pimpinela)
 
 	assert.equals(25, joaquin.habilidad())
-
 }
 
 test "Joaquin abandona pimpinela por lo que tiene una habilidad de 20" {
 
-	var pimpinela = new Grupo()
-	pimpinela.nombre("pimpinela")
 	pimpinela.agregarIntegrante(joaquin)
 	joaquin.grupo(pimpinela)
 
@@ -71,8 +66,6 @@ test "Joaquin abandona pimpinela por lo que tiene una habilidad de 20" {
 
 test "Lucia canta en el grupo pimpinela y tiene una habilidad de 50" {
 
-	var pimpinela = new Grupo()
-	pimpinela.nombre("pimpinela")
 	pimpinela.agregarIntegrante(lucia)
 	lucia.grupo(pimpinela)
 
@@ -85,8 +78,6 @@ test "Joaquin sin grupo tiene que dar 20" {
 
 test "Lucia abandona pimpinela por lo que tiene una habilidad de 70" {
 
-	var pimpinela = new Grupo()
-	pimpinela.nombre("pimpinela")
 	pimpinela.agregarIntegrante(lucia)
 	lucia.grupo(pimpinela)
 
@@ -157,7 +148,6 @@ test "Joaquin cobra 100 por presentarse solo en la trastienda" {
 	presentacionLaTrastienda.eliminarArtista(lucia)
 
 	assert.equals(100, joaquin.costo(presentacionLaTrastienda))
-
 }
 
 test "La capacidad de la trastienda para el 5 de agosto de 2017 es 700" {
@@ -201,10 +191,4 @@ test"el costo de la presentacion de la trastienda es 1650"{
 	var presentacionLaTrastienda = init.presentacionLaTrastienda()
 	assert.equals(1650, presentacionLaTrastienda.costo())
 }
-
-
-
-
-
-
 
