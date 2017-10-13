@@ -14,4 +14,8 @@ class Cancion {
 	}
 
 	method duracion() = duracion
+
+	method contiene(_palabra) {
+		letra.toLowerCase().contains(_palabra)
+	}
 }
