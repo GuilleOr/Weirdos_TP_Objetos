@@ -1,25 +1,18 @@
+import DeGrupo.*
 
-object joaquin {
-	var grupo = null
+object joaquin inherits DeGrupo {
 
-	method habilidad() {
+/* 
+method habilidad() {
 		if (self.grupo() != null) {
 			return 20 + 5
 		}
 		return 20
 	}
+BORRAR
 
-	method grupo(_grupo) {
-		grupo = _grupo
-	}
-
-	method grupo() = grupo
-
-	method serSolista() {
-		self.grupo().eliminarIntegrante(self)
-		grupo = null
-	}
-
+*/
+	
 	method interpretaBien(cancion) = cancion.duracion() > 300
 
 	method costo(presentacion) {

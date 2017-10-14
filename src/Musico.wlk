@@ -2,8 +2,8 @@ import Album.*
 
 class Musico {
 	var habilidad
-	var grupo
-	var albumes
+	var grupo = null
+	var albumes 
 
 	method habilidad() = habilidad
 
@@ -22,6 +22,9 @@ class Musico {
 	method albumes(_albumes) {
 		albumes = _albumes
 	}
+	
+	method esSolista() = self.grupo() == null  
+	method tieneGrupo() = self.grupo() != null
 
 	method minimalista() {
 		return albumes.all({album => album.minimalista()})
