@@ -6,6 +6,10 @@ import Presentacion.*
 import lunaPark.*
 import laTrastienda.*
 import pimpinela.*
+import DeGrupo.*
+import VocalistaPopular.*
+
+
 
 object init {
 
@@ -43,9 +47,4 @@ object init {
 		presentacionLaTrastienda.fecha(new Date(15, 11, 2017))
 		return presentacionLaTrastienda
 	}
-}
-object fixture {
-
-
-
 }

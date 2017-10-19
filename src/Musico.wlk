@@ -20,6 +20,10 @@ class Musico {
 	method grupo(_grupo) {
 		grupo = _grupo
 	}
+	
+	method abandonarGrupo(){
+		grupo = null
+	}
 
 	method albumes() = albumes
 

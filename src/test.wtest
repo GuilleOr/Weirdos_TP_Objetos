@@ -1,23 +1,38 @@
-import fixture.* 
+import Fixture.*
+import DeGrupo.*
+import Grupo.*
+import Musico.*
+import VocalistaPopular.*
 
-test "Joaquin del grupo pimpinela tiene una habilidad de 25" {
+describe "tests para joaquin" {
+	var joaquin = new DeGrupo(20, [ ], 5)
+	var pimpinela = new Grupo()
 
-	pimpinela.agregarIntegrante(joaquin)
-	joaquin.grupo(pimpinela)
+	test "Joaquin del grupo pimpinela tiene una habilidad de 25" {
 
-	assert.equals(25, joaquin.habilidad())
-}
+		pimpinela.agregarIntegrante(joaquin)
+		joaquin.grupo(pimpinela)
 
-test "Joaquin abandona pimpinela por lo que tiene una habilidad de 20" {
+		assert.equals(25, joaquin.habilidad())
+	}
 
-	pimpinela.agregarIntegrante(joaquin)
-	joaquin.grupo(pimpinela)
+	test "Joaquin abandona pimpinela por lo que tiene una habilidad de 20" {
 
-	joaquin.serSolista()
-	assert.equals(20, joaquin.habilidad())
-}
+		pimpinela.agregarIntegrante(joaquin)
+		joaquin.grupo(pimpinela)
+		joaquin.abandonarGrupo()
+		pimpinela.eliminarIntegrante(joaquin)
 
-test "Lucia canta en el grupo pimpinela y tiene una habilidad de 50" {
+		assert.that(joaquin.esSolista())
+		assert.equals(20, joaquin.habilidad())
+	}
+ 
+ describe "tests para lucia"{
+ 	 var lucia = new VocalistaPopular(70,[],"familia")
+ 	 
+ 
+
+/* test "Lucia canta en el grupo pimpinela y tiene una habilidad de 50" {
 
 	pimpinela.agregarIntegrante(lucia)
 	lucia.grupo(pimpinela)
@@ -145,3 +160,5 @@ test"el costo de la presentacion de la trastienda es 1650"{
 	assert.equals(1650, presentacionLaTrastienda.costo())
 }
 
+
+*/
