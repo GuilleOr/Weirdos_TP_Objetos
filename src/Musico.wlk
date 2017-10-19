@@ -3,7 +3,11 @@ import Album.*
 class Musico {
 	var habilidad
 	var grupo = null
-	var albumes 
+	var albumes = [ ]
+
+	constructor(habilidadNumerica, susAlbumes) {
+		habilidad = habilidadNumerica albumes = susAlbumes
+	}
 
 	method habilidad() = habilidad
 
@@ -22,23 +26,23 @@ class Musico {
 	method albumes(_albumes) {
 		albumes = _albumes
 	}
-	
-	method esSolista() = self.grupo() == null  
+
+	method esSolista() = self.grupo() == null
 	method tieneGrupo() = self.grupo() != null
 
 	method minimalista() {
-		return albumes.all({album => album.minimalista()})
+		return albumes.all({ album => album.minimalista() })
 	}
 
 	method cualesContienen(_palabra) {
-		return albumes.flatMap({album => album.contienen(_palabra)})
+		return albumes.flatMap({ album => album.contienen(_palabra) })
 	}
 
 	method duracionDeLaObra() {
-		return albumes.sum({album => album.duracion()})
+		return albumes.sum({ album => album.duracion() })
 	}
 
 	method laPego() {
-		return albumes.all({album => album.buenaVenta()})
+		return albumes.all({ album => album.buenaVenta() })
 	}
 }

@@ -1,7 +1,7 @@
 import Cancion.*
 
 class Album {
-	var canciones
+	var canciones 
 	var titulo
 	var fecha
 	var salieron
