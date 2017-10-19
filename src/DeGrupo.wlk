@@ -3,19 +3,22 @@ import Musico.*
 class DeGrupo inherits Musico {
 	var aumento
 
-	constructor(_aumento) {
+	constructor(habilidadNumerica, susAlbumes, _aumento) = self (
+	habilidadNumerica , susAlbumes ) {
 		aumento = _aumento
 	}
 
 	override method habilidad() {
-		var normal = super()
 		if (self.grupo() != null) {
-			return normal + aumento
-		} return normal
+			return habilidad + aumento
+		} return habilidad
 	}
 
-	/* method aumento(_aumento) {
-		aumento = _aumento
+	method costo(presentacion) {
+		if (presentacion.artistas().contains(self)) {
+			if (presentacion.cantidadArtistas() > 1) {
+				return 50
+			}
+		} return 100
 	}
-	*/
 }

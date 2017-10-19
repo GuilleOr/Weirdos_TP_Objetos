@@ -3,7 +3,7 @@ import Album.*
 class Musico {
 	var habilidad
 	var grupo = null
-	var albumes = [ ]
+	var albumes = #{ }
 
 	constructor(habilidadNumerica, susAlbumes) {
 		habilidad = habilidadNumerica albumes = susAlbumes
@@ -28,6 +28,7 @@ class Musico {
 	}
 
 	method esSolista() = self.grupo() == null
+	
 	method tieneGrupo() = self.grupo() != null
 
 	method minimalista() {
