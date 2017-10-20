@@ -49,17 +49,19 @@ describe "tests para joaquin" {
 	}
 
 	test "Joaquin no interpreta bien la cancion 'la familia'" {
-
+		self.cancionLaFamilia()
 		assert.notThat(joaquin.interpretaBien(cancionLaFamilia))
 
 	}
 
 	test "Joaquin si interpreta bien la cancion 'cisne'" {
-
+		self.cancionElCisne()
 		assert.that(joaquin.interpretaBien(cancionCisne))
 	}
 
 }
+
+
 
 /*  describe "tests para lucia" { var lucia = new VocalistaPopular ( 70 , [ ] ,
 "familia" ) test
