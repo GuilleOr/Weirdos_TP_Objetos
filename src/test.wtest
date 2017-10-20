@@ -1,48 +1,72 @@
-import Fixture.*
+import luisAlberto.*
+import fender.*
+import gibson.*
+import Cancion.*
+import Presentacion.*
+import lunaPark.*
+import laTrastienda.*
+import pimpinela.*
 import DeGrupo.*
-import Grupo.*
-import Musico.*
 import VocalistaPopular.*
+import Grupo.*
 
 describe "tests para joaquin" {
 	var joaquin = new DeGrupo(20, [ ], 5)
 	var pimpinela = new Grupo()
-
-	test "Joaquin del grupo pimpinela tiene una habilidad de 25" {
-
+	var cancionLaFamilia = new Cancion()
+	var cancionCisne = new Cancion()
+	
+	fixture {
 		pimpinela.agregarIntegrante(joaquin)
 		joaquin.grupo(pimpinela)
+	}
+
+	method cancionLaFamilia() {
+		cancionLaFamilia.duracion(264)
+		cancionLaFamilia.letra("Quiero brindar por mi gente sencilla, por el amor brindo por la familia")
+		return cancionLaFamilia
+	}
+	
+	method cancionElCisne() {
+		cancionCisne.duracion(312)
+		cancionCisne.letra("Hoy el viento se abrio quedo vacio el aire una vez mas y el manantial broto y nadie esta aqui
+		 y puedo ver que solo estallan las hojas al brillar")
+		return cancionCisne
+	}
+	
+	test "Joaquin del grupo pimpinela tiene una habilidad de 25" {
 
 		assert.equals(25, joaquin.habilidad())
 	}
 
 	test "Joaquin abandona pimpinela por lo que tiene una habilidad de 20" {
 
-		pimpinela.agregarIntegrante(joaquin)
-		joaquin.grupo(pimpinela)
 		joaquin.abandonarGrupo()
 		pimpinela.eliminarIntegrante(joaquin)
 
 		assert.that(joaquin.esSolista())
 		assert.equals(20, joaquin.habilidad())
 	}
- 
- describe "tests para lucia"{
- 	 var lucia = new VocalistaPopular(70,[],"familia")
- 	 
- 
 
-/* test "Lucia canta en el grupo pimpinela y tiene una habilidad de 50" {
+	test "Joaquin no interpreta bien la cancion 'la familia'" {
 
-	pimpinela.agregarIntegrante(lucia)
-	lucia.grupo(pimpinela)
+		assert.notThat(joaquin.interpretaBien(cancionLaFamilia))
 
-	assert.equals(50, lucia.habilidad())
+	}
+
+	test "Joaquin si interpreta bien la cancion 'cisne'" {
+
+		assert.that(joaquin.interpretaBien(cancionCisne))
+	}
+
 }
 
-test "Joaquin sin grupo tiene que dar 20" {
-	assert.equals(20, joaquin.habilidad())
-}
+/*  describe "tests para lucia" { var lucia = new VocalistaPopular ( 70 , [ ] ,
+"familia" ) test
+"Lucia canta en el grupo pimpinela y tiene una habilidad de 50" { pimpinela .
+agregarIntegrante ( lucia ) lucia . grupo ( pimpinela ) assert . equals ( 50 ,
+lucia . habilidad ( ) ) } } * /
+/*
 
 test "Lucia abandona pimpinela por lo que tiene una habilidad de 70" {
 
@@ -73,15 +97,7 @@ test "luis alberto toca con la gibson rota y su habilidad es 40" {
 	assert.equals(40, luisAlberto.habilidad())
 }
 
-test "Joaquin no interpreta bien la cancion 'la familia'" {
-	var cancionLaFamilia = init.cancionLaFamilia()
-	assert.notThat(joaquin.interpretaBien(cancionLaFamilia))
-}
 
-test "Joaquin si interpreta bien la cancion 'cisne'" {
-	var cancionCisne = init.cancionCisne()
-	assert.that(joaquin.interpretaBien(cancionCisne))
-}
 
 test "Lucia interpreta bien la cancion La Familia" {
 	var cancionLaFamilia = init.cancionLaFamilia()

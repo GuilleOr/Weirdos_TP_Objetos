@@ -11,9 +11,9 @@ import VocalistaPopular.*
 
 
 
-object init {
+ {
 
-	method cancionCisne() {
+	/* method cancionCisne() {
 		var cancionCisne = new Cancion()
 		cancionCisne.duracion(312)
 		cancionCisne.letra("Hoy el viento se abrio quedo vacio el aire una vez mas y el manantial broto y nadie esta aqui
@@ -21,12 +21,12 @@ object init {
 		return cancionCisne
 	}
 
-	method cancionLaFamilia() {
+	/*method cancionLaFamilia() {
 		var cancionLaFamilia = new Cancion()
 		cancionLaFamilia.duracion(264)
 		cancionLaFamilia.letra("Quiero brindar por mi gente sencilla, por el amor brindo por la familia")
 		return cancionLaFamilia
-	}
+	}*/
 
 	method presentacionLunaPark() {
 		var presentacionLuna = new Presentacion()
