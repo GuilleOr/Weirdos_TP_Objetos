@@ -3,7 +3,7 @@ import Cancion.*
 class Album {
 	var canciones 
 	var titulo
-	var fecha
+	var fechaLanzamiento
 	var salieron
 	var vendidos
 
@@ -19,10 +19,10 @@ class Album {
 		salieron = _salieron
 	}
 
-	method fecha() = fecha
+	method fechaLanzamiento() = fechaLanzamiento
 
-	method fecha(_fecha) {
-		fecha = _fecha
+	method fechaLanzamiento(_fecha) {
+		fechaLanzamiento = _fecha
 	}
 
 	method titulo() = titulo
@@ -35,6 +35,10 @@ class Album {
 
 	method canciones(_canciones) {
 		canciones = _canciones
+	}
+	
+	method agregarCancion(cancion){
+		canciones.add(cancion)
 	}
 
 	method minimalista() {

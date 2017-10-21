@@ -30,6 +30,10 @@ class Musico {
 	method albumes(_albumes) {
 		albumes = _albumes
 	}
+	
+	method agregarAlbum(album){
+		albumes.add(album)
+	}
 
 	method esSolista() = self.grupo() == null
 	

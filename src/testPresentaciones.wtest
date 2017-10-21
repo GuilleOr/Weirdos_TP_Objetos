@@ -15,10 +15,7 @@ describe "tests para las presentaciones" {
 	var lucia = new VocalistaPopular(70, [ ], "familia")
 	var presentacionLuna = new Presentacion()
 	var presentacionLaTrastienda = new Presentacion()
-
-	fixture {
-	}
-
+	
 	method presentacionLunaPark() {
 		presentacionLuna.lugar(lunaPark)
 		presentacionLuna.sumarArtista(joaquin)
