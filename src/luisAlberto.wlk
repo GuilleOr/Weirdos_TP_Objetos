@@ -1,14 +1,14 @@
+import Musico.*
 
-object luisAlberto {
+object luisAlberto inherits Musico ( 0 , [ ] ) {
 	var guitarra
 
-	method habilidad() {
+	override method habilidad() {
 		var precio = 8 * self.guitarra().precio()
 
 		if (precio >= 100) {
 			return 100
-		}
-		return precio
+		} return precio
 	}
 
 	method guitarra() = guitarra
@@ -17,12 +17,9 @@ object luisAlberto {
 		guitarra = _guitarra
 	}
 
-	method interpretaBien(cancion) = true
-
 	method costo(presentacion) {
 		if (presentacion.fecha().month() > 9) {
 			return 1200
-		}
-		return 1000
+		} return 1000
 	}
 }

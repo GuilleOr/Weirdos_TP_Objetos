@@ -9,12 +9,12 @@ class VocalistaPopular inherits Musico {
 	}
 	
 	override method habilidad() {
-		if (self.grupo().esMiembro(self)) {
+		if (self.grupo() != null) {
 			return habilidad - 20
 		} return habilidad
 	}
 	
-	method interpretaBien(cancion) = cancion.contiene(palabra)
+	override method interpretaBien(cancion) = cancion.contiene(palabra)
 
 	method costo(presentacion) {
 		if (presentacion.lugar().capacidad(presentacion.fecha()) > 5000) {

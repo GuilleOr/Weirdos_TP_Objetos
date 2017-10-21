@@ -1,0 +1,100 @@
+import luisAlberto.*
+import fender.*
+import gibson.*
+import Cancion.*
+import Presentacion.*
+import lunaPark.*
+import laTrastienda.*
+import pimpinela.*
+import DeGrupo.*
+import VocalistaPopular.*
+import Grupo.*
+
+describe "tests para las presentaciones" {
+	var joaquin = new DeGrupo(20, [ ], 5)
+	var lucia = new VocalistaPopular(70, [ ], "familia")
+	var presentacionLuna = new Presentacion()
+	var presentacionLaTrastienda = new Presentacion()
+
+	fixture {
+	}
+
+	method presentacionLunaPark() {
+		presentacionLuna.lugar(lunaPark)
+		presentacionLuna.sumarArtista(joaquin)
+		presentacionLuna.sumarArtista(lucia)
+		presentacionLuna.sumarArtista(luisAlberto)
+		presentacionLuna.fecha(new Date(20, 04, 2017))
+		return presentacionLuna
+	}
+
+	method presentacionLaTrastienda() {
+		presentacionLaTrastienda.lugar(laTrastienda)
+		presentacionLaTrastienda.sumarArtista(joaquin)
+		presentacionLaTrastienda.sumarArtista(lucia)
+		presentacionLaTrastienda.sumarArtista(luisAlberto)
+		presentacionLaTrastienda.fecha(new Date(15, 11, 2017))
+		return presentacionLaTrastienda
+	}
+	
+	test "Joaquin cobra 50 por presentarse en el luna park" {
+
+		self.presentacionLunaPark()
+		
+		assert.equals(50, joaquin.costo(presentacionLuna))
+	}
+
+	test "Joaquin cobra 100 por presentarse solo en la trastienda" {
+
+		self.presentacionLaTrastienda()
+		presentacionLaTrastienda.eliminarArtista(luisAlberto)
+		presentacionLaTrastienda.eliminarArtista(lucia)
+
+		assert.equals(100, joaquin.costo(presentacionLaTrastienda))
+	}
+
+	test "La capacidad de la trastienda para el 5 de agosto de 2017 es 700" {
+
+		var fechaShow = new Date(05, 08, 2017)
+		assert.equals(700, laTrastienda.capacidad(fechaShow))
+	}
+
+	test "La capacidad de la trastienda para el 8 de agosto de 2017 es 400" {
+
+		var fechaShow = new Date(08, 08, 2017)
+		assert.equals(400, laTrastienda.capacidad(fechaShow))
+	}
+
+	test "Lucia cobra 500 por presentarse en el luna park " {
+		self.presentacionLunaPark()
+		assert.equals(500, lucia.costo(presentacionLuna))
+	}
+
+	test "Lucia cobra 400 por presentarse en la trastienda" {
+		self.presentacionLaTrastienda()
+		assert.equals(400, lucia.costo(presentacionLaTrastienda))
+	}
+
+	test "luis alberto cobra 1000 por presentarse en el luna park" {
+		self.presentacionLunaPark()
+		assert.equals(1000, luisAlberto.costo(presentacionLuna))
+	}
+
+	test "luis alberto cobra 1200 por presentarse en la trastienda" {
+		self.presentacionLaTrastienda()
+		assert.equals(1200, luisAlberto.costo(presentacionLaTrastienda))
+	}
+
+	test "el costo de la presentacion del luna park es 1550" {
+		self.presentacionLunaPark()
+		assert.equals(1550, presentacionLuna.costo())
+	}
+
+	test "el costo de la presentacion de la trastienda es 1650" {
+		self.presentacionLaTrastienda()
+		assert.equals(1650, presentacionLaTrastienda.costo())
+	}
+
+}
+
+

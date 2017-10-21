@@ -1,0 +1,124 @@
+import luisAlberto.*
+import fender.*
+import gibson.*
+import Cancion.*
+import Presentacion.*
+import lunaPark.*
+import laTrastienda.*
+import pimpinela.*
+import DeGrupo.*
+import VocalistaPopular.*
+import Grupo.*
+
+describe "tests para joaquin lucia y luisAlberto" {
+	var joaquin = new DeGrupo(20, [ ], 5)
+	var lucia = new VocalistaPopular(70, [ ], "familia")
+	var pimpinela = new Grupo()
+	var cancionLaFamilia = new Cancion()
+	var cancionCisne = new Cancion()
+
+	fixture {
+		pimpinela.agregarIntegrante(joaquin)
+		pimpinela.agregarIntegrante(lucia)
+		lucia.grupo(pimpinela)
+		joaquin.grupo(pimpinela)
+	}
+
+	method cancionLaFamilia() {
+		cancionLaFamilia.duracion(264)
+		cancionLaFamilia.letra("Quiero brindar por mi gente sencilla, por el amor brindo por la familia")
+		return cancionLaFamilia
+	}
+
+	method cancionElCisne() {
+		cancionCisne.duracion(312)
+		cancionCisne.letra("Hoy el viento se abrio quedo vacio el aire una vez mas y el manantial broto y nadie esta aqui
+		 y puedo ver que solo estallan las hojas al brillar")
+		return cancionCisne
+	}
+
+	test "Joaquin del grupo pimpinela tiene una habilidad de 25" {
+
+		assert.equals(25, joaquin.habilidad())
+	}
+
+	test "Joaquin abandona pimpinela por lo que tiene una habilidad de 20" {
+
+		joaquin.abandonarGrupo()
+		pimpinela.eliminarIntegrante(joaquin)
+
+		assert.that(joaquin.esSolista())
+		assert.equals(20, joaquin.habilidad())
+	}
+
+	test "Joaquin no interpreta bien la cancion 'la familia'" {
+		self.cancionLaFamilia()
+		assert.notThat(joaquin.interpretaBien(cancionLaFamilia))
+
+	}
+
+	test "Joaquin si interpreta bien la cancion 'cisne'" {
+		self.cancionElCisne()
+		assert.that(joaquin.interpretaBien(cancionCisne))
+	}
+
+	test "Lucia canta en el grupo pimpinela y tiene una habilidad de 50" {
+
+		assert.equals(50, lucia.habilidad())
+	}
+
+	test "Lucia abandona pimpinela por lo que tiene una habilidad de 70" {
+
+		lucia.abandonarGrupo()
+		pimpinela.eliminarIntegrante(lucia)
+
+		assert.that(lucia.esSolista())
+		assert.equals(70, lucia.habilidad())
+	}
+
+	test "Lucia interpreta bien la cancion La Familia" {
+
+		self.cancionLaFamilia()
+
+		assert.that(lucia.interpretaBien(cancionLaFamilia))
+	}
+
+	test "Lucia no interpreta bien la cancion Cisne" {
+
+		self.cancionElCisne()
+
+		assert.notThat(lucia.interpretaBien(cancionCisne))
+	}
+
+	test "luis alberto toca con una fender, su habilidad es de 100" {
+
+		luisAlberto.guitarra(fender)
+		assert.equals(80, luisAlberto.habilidad())
+
+	}
+
+	test "luis alberto toca con la gison sana y su habilidad es 100" {
+
+		luisAlberto.guitarra(gibson)
+		assert.equals(100, luisAlberto.habilidad())
+
+	}
+
+	test "luis alberto toca con la gibson rota y su habilidad es 40" {
+		gibson.tratarMal()
+		luisAlberto.guitarra(gibson)
+		assert.equals(40, luisAlberto.habilidad())
+	}
+
+	test "Luis Alberto si interpreta bien la cancion La Familia" {
+
+		self.cancionLaFamilia()
+		assert.that(luisAlberto.interpretaBien(cancionLaFamilia))
+	}
+
+	test "Luis Alberto si interpreta bien la cancion Cisne" {
+		self.cancionElCisne()
+		assert.that(luisAlberto.interpretaBien(cancionCisne))
+	}
+	
+	}
