@@ -1,6 +1,6 @@
 import Musico.*
 
-object luisAlberto inherits Musico ( 0 , [ ] ) {
+object luisAlberto inherits Musico ( 0 , #{}) {
 	var guitarra
 
 	override method habilidad() {

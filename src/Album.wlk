@@ -1,7 +1,7 @@
 import Cancion.*
 
 class Album {
-	var canciones 
+	var canciones = #{}
 	var titulo
 	var fechaLanzamiento
 	var salieron
@@ -42,7 +42,7 @@ class Album {
 	}
 
 	method minimalista() {
-		return canciones.all({cancion => cancion.duracion() < 60*3})
+		return canciones.all({cancion => cancion.esCorta()})
 	}
 	
 	method contienen(_palabra) {

@@ -18,4 +18,8 @@ class Cancion {
 	method contiene(_palabra) {
 		letra.toLowerCase().contains(_palabra)
 	}
+
+	method esCorta() {
+		return duracion < 60 * 3
+	}
 }

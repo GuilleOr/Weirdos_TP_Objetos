@@ -17,6 +17,7 @@ describe "tests para los musicos" {
 
 	var joaquin = new DeGrupo(20, [ ], 5)
 	var lucia = new VocalistaPopular(70, [ ], "familia")
+	
 	var pimpinela = new Grupo()
 
 	var cancionLaFamilia = new Cancion()
@@ -83,6 +84,7 @@ describe "tests para los musicos" {
 	}
 
 	method especialLaFamilia() {
+		especialLaFamilia.titulo("especial la familia")
 		especialLaFamilia.fechaLanzamiento(new Date(17, 06, 1992))
 		especialLaFamilia.vendidos(89000)
 		especialLaFamilia.salieron(100000)
@@ -91,6 +93,7 @@ describe "tests para los musicos" {
 	}
 
 	method laSole() {
+		laSole.titulo("la sole")
 		laSole.fechaLanzamiento(new Date(04, 02, 2005))
 		laSole.vendidos(130000)
 		laSole.salieron(200000)
@@ -100,6 +103,7 @@ describe "tests para los musicos" {
 	}
 	
 	method paraLosArboles(){
+		paraLosArboles.titulo("para los arboles")
 		paraLosArboles.fechaLanzamiento(new Date(31, 03, 2003))
 		paraLosArboles.vendidos(49000)
 		paraLosArboles.salieron(50000)
@@ -109,6 +113,7 @@ describe "tests para los musicos" {
 	}
 	
 	method justCrisantemo(){
+		justCrisantemo.titulo("just crisantemo")
 		justCrisantemo.fechaLanzamiento(new Date(05, 12, 2007))
 		justCrisantemo.vendidos(27500)
 		justCrisantemo.salieron(28000)
@@ -200,9 +205,31 @@ describe "tests para los musicos" {
 		assert.that(luisAlberto.interpretaBien(cancionCisne))
 	}
 
-	/* 	test "Saber si soledad es minimalista"{
+	test "Saber si la cancion crisantemo es corta"{
+		self.cancionCrisantemo()
+		assert.that(cancionCrisantemo.esCorta())		
+	}
+	
+	test  "Saber si la cancion alma de diamante es corta"{
+		self.cancionAlmaDeDiamante()
+		assert.notThat(cancionAlmaDeDiamante.esCorta())
+	}
+	
+	test "saber si soledad es minimalista"{
+		assert.that(soledad.minimalista())
+	}
+	
+	test "saber si luisAlberto es minimalista"{
+		assert.notThat(luisAlberto.minimalista())
+	}
+	
+	test "saber si joaquin es minimalista"{
+		assert.notThat(joaquin.minimalista())
+	}
+	
+	test "saber que canciones de LuisAlberto tienen la palabra 'cielo' "{
 		
-		asert
-		
-	}*/
+	}
+	
+	
 }
