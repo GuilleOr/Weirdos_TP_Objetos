@@ -264,6 +264,23 @@ describe "tests para los musicos" {
 
 		assert.equals(cancionAlmaDeDiamante, paraLosArboles.laMasLarga())
 	}
+	
+	test "cuantas palabras tiene alma de diamante"{
+		self.cancionAlmaDeDiamante()
+		assert.equals(25, cancionAlmaDeDiamante.cantidadDePalabras())
+	}
+	
+	test "saber que cancion es la mas larga del album 'especial la familia' "{
+		self.cancionLaFamilia()
+		assert.equals(cancionLaFamilia, especialLaFamilia.laMasLarga())
+	}
+	
+	test "saber que cancion es la mas larga del album 'la sole' "{
+		self.cancionEres()
+		self.cancionCorazonAmericano()
+		
+		assert.equals(cancionEres, laSole.laMasLarga())
+	}
 
 	test "saber si joaquin 'la pego' " {
 		self.especialLaFamilia()

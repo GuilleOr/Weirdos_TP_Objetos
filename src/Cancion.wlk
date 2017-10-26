@@ -27,4 +27,8 @@ class Cancion {
 	method esCorta() {
 		return duracion < (60 * 3)
 	}
+	
+	method cantidadDePalabras(){
+		return letra.size()
+	}
 }
