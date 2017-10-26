@@ -2,7 +2,12 @@
 class Cancion {
 	var duracion
 	var letra
-
+	var nombre
+	
+	
+	method nombre(_nombre){
+		nombre = _nombre
+	}
 	method letra(_letra) {
 		letra = _letra
 	}
@@ -20,6 +25,6 @@ class Cancion {
 	}
 
 	method esCorta() {
-		return duracion < 60 * 3
+		return duracion < (60 * 3)
 	}
 }
