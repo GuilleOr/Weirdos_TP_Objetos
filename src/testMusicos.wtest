@@ -10,6 +10,7 @@ import DeGrupo.*
 import VocalistaPopular.*
 import Grupo.*
 import Album.*
+import estados.*
 
 describe "tests para los musicos" {
 	var kike = new DeGrupo(60, [ ], 20)
@@ -250,12 +251,22 @@ describe "tests para los musicos" {
 		assert.notThat(joaquin.minimalista())
 	}
 
-	/*	test "saber que canciones de LuisAlberto tienen la palabra 'cielo' "{
+	test "saber que canciones de LuisAlberto tienen la palabra 'pujante' "{
 		self.cancionAlmaDeDiamante()
 		self.cancionCrisantemo()
 		self.cancionElCisne()
+		
+		assert.equals([],luisAlberto.cualesContienen("pujante"))
 				
-	} */
+	} 
+	test "saber que canciones de LuisAlberto tienen la palabra 'cielo' "{
+		self.cancionAlmaDeDiamante()
+		self.cancionCrisantemo()
+		self.cancionElCisne()
+		
+		assert.equals([cancionCrisantemo,cancionAlmaDeDiamante],luisAlberto.cualesContienen("cielo"))
+				
+	} 
 	
 	test "saber que cancion es la mas larga del album 'para los arboles' "{
 		self.paraLosArboles()

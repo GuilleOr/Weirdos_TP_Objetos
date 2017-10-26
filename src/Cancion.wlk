@@ -21,7 +21,7 @@ class Cancion {
 	method duracion() = duracion
 
 	method contiene(_palabra) {
-		letra.toLowerCase().contains(_palabra)
+		return letra.toLowerCase().contains(_palabra)
 	}
 
 	method esCorta() {
