@@ -3,8 +3,7 @@ import Album.*
 
 object criterioDuracion {
 
-	method comparar(album) = album.canciones().sortedBy({ track1 , track2 =>
-	track1.duracion() > track2.duracion() }).head()
+	method comparar(album) = album.canciones().sortedBy({ track1 , track2 => track1.duracion() > track2.duracion() }).head()
 
 }
 

@@ -3,6 +3,7 @@ class Presentacion {
 	var fecha
 	var artistas = [ ]
 	var lugar
+	var condicionesParaParticipar = []
 
 	method fecha(_fecha) {
 		fecha = _fecha
@@ -29,4 +30,16 @@ class Presentacion {
 	method capacidad() = lugar.capacidad(fecha)
 
 	method costo() = self.artistas().sum({ artista => artista.costo(self) })
+	
+	method condicionesParaParticipar()=condicionesParaParticipar
+	
+	method condicionesParaParticipar(condiciones){
+		condicionesParaParticipar = condiciones
+	}
+	
+	method cumpleCondiciones(musico){
+		condicionesParaParticipar.any{ condicion => condicion.chequear(musico)}
+	}
+	
+	
 }
