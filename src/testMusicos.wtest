@@ -15,6 +15,7 @@ import cancionRemixada.*
 import mashup.*
 import criterios.*
 
+
 describe "tests para los musicos" {
 	var kike = new DeGrupo(60, [ ], 20)
 	var soledad = new VocalistaPopular(55, [ ], "amor")
@@ -37,6 +38,10 @@ describe "tests para los musicos" {
 	var justCrisantemo = new Album()
 
 	var cancionRemixada = new CancionRemixada()
+	var remixLaFamilia = new CancionRemixada()
+	
+	var mushup1 = new Mushup()
+	
 
 	fixture {
 		pimpinela.agregarIntegrante(lucia)
@@ -56,8 +61,16 @@ describe "tests para los musicos" {
 		luisAlberto.agregarAlbum(justCrisantemo)
 		justCrisantemo.agregarCancion(cancionCrisantemo)
 		
+		
+	}
+	method mushup1(){
+		
 	}
 
+	method remixLaFamilia(){
+		remixLaFamilia.cancionOriginal(cancionLaFamilia)
+		return remixLaFamilia
+	}
 	method cancionRemixada(){
 		cancionRemixada.letra("hola")
 		return cancionRemixada
@@ -220,12 +233,12 @@ describe "tests para los musicos" {
 	test "Luis Alberto si interpreta bien la cancion La Familia" {
 
 		self.cancionLaFamilia()
-		assert.that(luisAlberto.interpretaBien(cancionLaFamilia))
+		assert.that(luisAlberto.interpretaBien(cancionLaFamilia, "unaPalabra"))
 	}
 
 	test "Luis Alberto si interpreta bien la cancion Cisne" {
 		self.cancionElCisne()
-		assert.that(luisAlberto.interpretaBien(cancionCisne))
+		assert.that(luisAlberto.interpretaBien(cancionCisne, "unaPalabra"))
 	}
 
 	test "Saber si la cancion crisantemo es corta" {
@@ -355,4 +368,53 @@ describe "tests para los musicos" {
 		
 		assert.equals(cancionCisne, criterioDuracion.comparar(paraLosArboles))
 	}
+	test "Saber cuál es la canción más larga del álbum “La Sole”, teniendo en cuenta la longitud de la letra"{
+		self.laSole()
+		self.cancionCorazonAmericano()
+		self.cancionEres()
+		
+		assert.equals(cancionEres, criterioLetra.comparar(laSole))
+	
+	}
+
+	test "Saber cuál es la canción más larga del álbum “Especial La Familia”, teniendo en cuenta la duración"{
+		self.especialLaFamilia()
+		self.cancionLaFamilia()
+		
+		assert.equals(cancionLaFamilia,criterioDuracion.comparar(especialLaFamilia))
+	}
+	
+	test "Saber cuál es la canción más larga del álbum “La Sole”, teniendo en cuenta la duración"{
+		self.laSole()
+		self.cancionCorazonAmericano()
+		self.cancionEres()
+		
+		assert.equals(cancionCorazonAmericano, criterioDuracion.comparar(laSole))
+	}
+	
+	test "Saber cuánto dura el remix de La Familia "{
+		self.cancionLaFamilia()
+		self.remixLaFamilia()
+		
+		assert.equals(792, remixLaFamilia.duracion()
+		)
+	}
+	
+	test "Saber cual es la letra del remix de la familia"{
+		self.cancionLaFamilia()
+		self.remixLaFamilia()
+		
+		assert.equals("mueve tu cuelpo baby Quiero brindar por mi gente sencilla, por el amor brindo por la familia yeah oh yeah", remixLaFamilia.letra())
+	}
+	
+	test "Saber cuál es la duración del mashup de Alma de Diamante y  Crisantemo"{
+		
+	}
+	
+	
+	
+	
+	
+	
+	
 }

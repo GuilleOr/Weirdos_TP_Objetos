@@ -4,7 +4,7 @@ class CancionRemixada inherits Cancion {
 
 	var cancionOriginal
 	
-	override method duracion() = super() * 3
+	override method duracion() = cancionOriginal.duracion() * 3
 	
 	override method letra() = "mueve tu cuelpo baby " + cancionOriginal.letra() + " yeah oh yeah" 
 	
