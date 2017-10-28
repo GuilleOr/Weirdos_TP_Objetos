@@ -1,4 +1,5 @@
 import Cancion.*
+import criterios.*
 
 class Album {
 	var canciones = #{}
@@ -61,7 +62,5 @@ class Album {
 		return vendidos > 0.75 * salieron
 	}
 	
-	method mejorCancion(criterio){
-		return canciones.filter
-	}
+	
 }

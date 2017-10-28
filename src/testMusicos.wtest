@@ -12,6 +12,8 @@ import Grupo.*
 import Album.*
 import estados.*
 import cancionRemixada.*
+import mashup.*
+import criterios.*
 
 describe "tests para los musicos" {
 	var kike = new DeGrupo(60, [ ], 20)
@@ -59,7 +61,6 @@ describe "tests para los musicos" {
 	method cancionRemixada(){
 		cancionRemixada.letra("hola")
 		return cancionRemixada
-		
 	}
 	
 	method cancionLaFamilia() {
@@ -346,4 +347,13 @@ describe "tests para los musicos" {
 		
 		assert.equals("mueve tu cuelpo hola yeah oh yeah", cancionRemixada.letra())
 	}
+	
+	test "probar criterios la cancion de mayor duracion en segundos de para los arboles"{
+		self.paraLosArboles()
+		self.cancionAlmaDeDiamante()
+		self.cancionElCisne()
+		
+		assert.equals(cancionCisne, criterioDuracion.comparar(paraLosArboles))
+	}
+
 }

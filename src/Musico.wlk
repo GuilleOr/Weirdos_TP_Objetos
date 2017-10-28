@@ -4,10 +4,10 @@ class Musico {
 	var habilidad
 	var grupo = null
 	var albumes = #{ }
-	var nombre
+	
 
-	constructor(habilidadNumerica, susAlbumes,_nombre) {
-		habilidad = habilidadNumerica albumes = susAlbumes nombre = _nombre
+	constructor(habilidadNumerica, susAlbumes) {
+		habilidad = habilidadNumerica albumes = susAlbumes
 	}
 
 	method habilidad() = habilidad
@@ -58,11 +58,7 @@ class Musico {
 	
 	method nombre() = nombre
 	
-	method interpretaBien(cancion) {
-		
-		return cancion.any{( )}
-		return cancion.autor() == self.nombre() 
-	}
+	method interpretaBien(cancion) = true
 	
 	
 }
