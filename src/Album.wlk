@@ -2,7 +2,7 @@ import Cancion.*
 import criterios.*
 
 class Album {
-	var canciones = #{}
+	var canciones = []
 	var titulo
 	var fechaLanzamiento
 	var salieron

@@ -355,5 +355,4 @@ describe "tests para los musicos" {
 		
 		assert.equals(cancionCisne, criterioDuracion.comparar(paraLosArboles))
 	}
-
 }

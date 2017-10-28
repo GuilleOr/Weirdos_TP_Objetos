@@ -55,9 +55,7 @@ class Musico {
 	method laPego() {
 		return albumes.all({ album => album.buenaVenta() })
 	}
-	
-	method nombre() = nombre
-	
+		
 	method interpretaBien(cancion) = true
 	
 	
