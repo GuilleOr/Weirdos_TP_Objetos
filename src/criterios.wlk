@@ -1,22 +1,30 @@
 import Cancion.*
 import Album.*
 
-object criterioDuracion {
+class Criterio {
+	
+	
+	method comparar(album) = album.canciones().sortedBy(self.getCriterio()).head()
+	
+	method getCriterio()
+	
+}
 
-	method comparar(album) = album.canciones().sortedBy({ track1 , track2 => track1.duracion() > track2.duracion() }).head()
+object criterioDuracion inherits Criterio {
+
+	override method getCriterio() = { track1 , track2 => track1.duracion() > track2.duracion() }
 
 }
 
-object criterioLetra {
+object criterioLetra inherits Criterio  {
 
-	method comparar(album) = album.canciones().sortedBy({ track1 , track2 => track1.letra() >
-	track2.letra() }).head()
+	override method getCriterio() = { track1 , track2 => track1.letra() > track2.letra() }
 
 }
 
-object criterioTitulo {
+object criterioTitulo inherits Criterio {
 
-	method comparar(album) = album.canciones().sortedBy({ track1 , track2 => track1.nombre()
-	> track2.nombre() }).head()
+	override method getCriterio() = { track1 , track2 => track1.nombre()
+	> track2.nombre() }
 
 }

@@ -16,8 +16,6 @@ class CondicionDeHabilidad {
 		if(!(musico.habilidad() >= self.habilidadMinima())){
 			throw new HabilidadRequeridaException("El musico no cumple con el minimo de habilidad requerido")
 		}
-		
-		return true;
 	}
 
 }
@@ -37,7 +35,6 @@ class CondicionDeCancionBienInterpretada {
 			throw new CancionInterpretadaException("El musico no interpreta bien la cancion requerida")
 		}
 		
-		return true;
 	}
 
 }
@@ -55,11 +52,10 @@ class CondicionDeCompositor {
 
 	method ejecutarCondicion(musico){
 //		if(not(unMusico.albumes().sum({album => album.canciones().size()}) >= self.cantidadMinimaDeCanciones())){
-		if(musico.albumes().flatMap().filter{ cancion => musico.esDeSuAutoria(cancion)} > self.cantidadMinimaDeCanciones()){
+		if(musico.albumes().flatMap({ album => album.canciones() }).filter{ cancion => musico.esDeSuAutoria(cancion)} > self.cantidadMinimaDeCanciones()){
 			throw new CompositorException("El musico no cumple con la cantidad minima de canciones compuestas")
 		}
 		
-		return true;
 	}
 
 }

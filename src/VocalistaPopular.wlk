@@ -18,7 +18,7 @@ class VocalistaPopular inherits Musico {
 //		return cancion.contiene("familia")
 //		}
 
-	override method interpretaBien(cancion) = return super(cancion) || cancion.contiene(palabra)
+	override method interpretaBien(cancion) = super(cancion) || cancion.contiene(palabra)
 
 	method costo(presentacion) {
 		if (presentacion.lugar().capacidad(presentacion.fecha()) > 5000) {

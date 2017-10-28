@@ -38,8 +38,7 @@ class Presentacion {
 	}
 	
 	method cumpleCondiciones(musico){
-		condicionesParaParticipar.any{ condicion => condicion.chequear(musico)}
+		condicionesParaParticipar.forEach { condicion => condicion.chequear(musico) }
 	}
-	
 	
 }
