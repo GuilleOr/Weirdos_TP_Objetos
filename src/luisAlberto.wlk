@@ -22,4 +22,6 @@ object luisAlberto inherits Musico ( 0 , #{}) {
 			return 1200
 		} return 1000
 	}
+	
+	override method interpretaBien(cancion)=true 
 }

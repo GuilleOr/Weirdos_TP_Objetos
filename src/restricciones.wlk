@@ -1,4 +1,3 @@
-
 object habilidadChecker {
 
 	method chequear(musico) = musico.habilidad() < 70

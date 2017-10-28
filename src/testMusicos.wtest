@@ -233,12 +233,12 @@ describe "tests para los musicos" {
 	test "Luis Alberto si interpreta bien la cancion La Familia" {
 
 		self.cancionLaFamilia()
-		assert.that(luisAlberto.interpretaBien(cancionLaFamilia, "unaPalabra"))
+		assert.that(luisAlberto.interpretaBien(cancionLaFamilia))
 	}
 
 	test "Luis Alberto si interpreta bien la cancion Cisne" {
 		self.cancionElCisne()
-		assert.that(luisAlberto.interpretaBien(cancionCisne, "unaPalabra"))
+		assert.that(luisAlberto.interpretaBien(cancionCisne))
 	}
 
 	test "Saber si la cancion crisantemo es corta" {
@@ -407,10 +407,9 @@ describe "tests para los musicos" {
 		assert.equals("mueve tu cuelpo baby Quiero brindar por mi gente sencilla, por el amor brindo por la familia yeah oh yeah", remixLaFamilia.letra())
 	}
 	
-	test "Saber cuál es la duración del mashup de Alma de Diamante y  Crisantemo"{
-		
-	}
-	
+//	test "Saber cuál es la duración del mashup de Alma de Diamante y  Crisantemo"{
+//			
+//	}
 	
 	
 	

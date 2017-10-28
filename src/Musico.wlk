@@ -56,7 +56,7 @@ class Musico {
 		return albumes.all({ album => album.buenaVenta() })
 	}
 		
-	method interpretaBien(cancion, palabra) = self.esDeSuAutoria(cancion) || self.cumpleCondicionDeHabilidad()
+	method interpretaBien(cancion) = self.esDeSuAutoria(cancion) || self.cumpleCondicionDeHabilidad()
 	
 	method esDeSuAutoria(cancion) = self.albumes().any{ album => album.canciones().contains(cancion)}
 	

@@ -9,13 +9,26 @@ import pimpinela.*
 import DeGrupo.*
 import VocalistaPopular.*
 import Grupo.*
+import restricciones.*
+import Condiciones.*
 
 describe "tests para las presentaciones" {
 	var joaquin = new DeGrupo(20, [ ], 5)
 	var lucia = new VocalistaPopular(70, [ ], "familia")
 	var presentacionLuna = new Presentacion()
 	var presentacionLaTrastienda = new Presentacion()
+	var presentacionLuna2 = new Presentacion()
 	
+	var condicionLuna1 = new CondicionDeHabilidad(70)
+	var condicionLuna2 = new CondicionDeCompositor(1)
+	var condicionLuna3 = new CondicionDeCancionBienInterpretada(cancionAlicia)
+	
+	var cancionAlicia = new Cancion()
+	
+	method cancionAlicia(){
+		cancionAlicia.nombre("Alicia en el pais de las maravillas")
+		
+	}
 	method presentacionLunaPark() {
 		presentacionLuna.lugar(lunaPark)
 		presentacionLuna.sumarArtista(joaquin)
@@ -32,6 +45,20 @@ describe "tests para las presentaciones" {
 		presentacionLaTrastienda.sumarArtista(luisAlberto)
 		presentacionLaTrastienda.fecha(new Date(15, 11, 2017))
 		return presentacionLaTrastienda
+	}
+	
+	method presentacionLunaPark2(){
+		presentacionLuna2.lugar(lunaPark)
+		presentacionLuna2.fecha(new Date(15, 12, 2017))
+		presentacionLuna2.condicionesParaParticipar(condicionLuna1,condicionLuna2)
+	
+		/* y tampoco aceptamos músicos que no puedan ejecutar la canción “Canción de Alicia en el país”
+		 que dura 510 segundos y tiene como letra “Quién sabe Alicia, este país no estuvo hecho
+		  porque sí. Te vas a ir, vas a salir pero te quedas, ¿dónde más vas a ir? Y es que aquí, 
+		  sabes el trabalenguas, trabalenguas, el asesino te asesina, y es mucho para ti. 
+		  Se acabó ese juego que te hacía feliz.” 
+		
+		*/
 	}
 	
 	test "Joaquin cobra 50 por presentarse en el luna park" {
