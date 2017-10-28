@@ -3,7 +3,13 @@ class Cancion {
 	var duracion
 	var letra
 	var nombre
+	var autor
 	
+	method autor(_autor){
+		autor = _autor
+	}
+	
+	method autor() = autor 
 	
 	method nombre(_nombre){
 		nombre = _nombre

@@ -60,4 +60,8 @@ class Album {
 	method buenaVenta() {
 		return vendidos > 0.75 * salieron
 	}
+	
+	method mejorCancion(criterio){
+		return canciones.filter
+	}
 }

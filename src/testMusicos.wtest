@@ -11,6 +11,7 @@ import VocalistaPopular.*
 import Grupo.*
 import Album.*
 import estados.*
+import cancionRemixada.*
 
 describe "tests para los musicos" {
 	var kike = new DeGrupo(60, [ ], 20)
@@ -33,6 +34,8 @@ describe "tests para los musicos" {
 	var paraLosArboles = new Album()
 	var justCrisantemo = new Album()
 
+	var cancionRemixada = new CancionRemixada()
+
 	fixture {
 		pimpinela.agregarIntegrante(lucia)
 		lucia.grupo(pimpinela)
@@ -50,8 +53,15 @@ describe "tests para los musicos" {
 		paraLosArboles.agregarCancion(cancionAlmaDeDiamante)
 		luisAlberto.agregarAlbum(justCrisantemo)
 		justCrisantemo.agregarCancion(cancionCrisantemo)
+		
 	}
 
+	method cancionRemixada(){
+		cancionRemixada.letra("hola")
+		return cancionRemixada
+		
+	}
+	
 	method cancionLaFamilia() {
 		cancionLaFamilia.nombre("LaFamilia")
 		cancionLaFamilia.duracion(264)
@@ -329,5 +339,11 @@ describe "tests para los musicos" {
 		self.cancionAlmaDeDiamante()
 		self.cancionElCisne()
 		assert.equals(703,luisAlberto.duracionDeLaObra())
+	}
+	
+	test "a ver si funciona cancoin remixada"{
+		self.cancionRemixada()
+		
+		assert.equals("mueve tu cuelpo hola yeah oh yeah", cancionRemixada.letra())
 	}
 }
