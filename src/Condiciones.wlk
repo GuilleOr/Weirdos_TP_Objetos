@@ -52,7 +52,7 @@ class CondicionDeCompositor {
 
 	method ejecutarCondicion(musico){
 //		if(not(unMusico.albumes().sum({album => album.canciones().size()}) >= self.cantidadMinimaDeCanciones())){
-		if(musico.albumes().flatMap({ album => album.canciones() }).filter{ cancion => musico.esDeSuAutoria(cancion)} > self.cantidadMinimaDeCanciones()){
+		if(musico.albumes().flatMap({ album => album.canciones() }).filter{ cancion => musico.esDeSuAutoria(cancion)}.size() > self.cantidadMinimaDeCanciones()){
 			throw new CompositorException("El musico no cumple con la cantidad minima de canciones compuestas")
 		}
 		

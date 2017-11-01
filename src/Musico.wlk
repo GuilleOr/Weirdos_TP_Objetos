@@ -57,12 +57,13 @@ class Musico {
 	}
 		
 	method interpretaBien(cancion) = self.esDeSuAutoria(cancion) || self.cumpleCondicionDeHabilidad() 
+	|| self.condicionExtraInterpretacion(cancion)
 	
 	method esDeSuAutoria(cancion) = self.albumes().any{ album => album.canciones().contains(cancion)}
 	
 	method cumpleCondicionDeHabilidad() = self.habilidad() > 60
 	
-	
+	method condicionExtraInterpretacion(cancion)
 	
 	
 	
