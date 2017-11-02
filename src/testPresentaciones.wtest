@@ -18,16 +18,17 @@ describe "tests para las presentaciones" {
 	var presentacionLuna = new Presentacion()
 	var presentacionLaTrastienda = new Presentacion()
 	var presentacionLuna2 = new Presentacion()
+	var cancionAlicia = new Cancion()
 
 	var condicionLuna1 = new CondicionDeHabilidad(70)
 	var condicionLuna2 = new CondicionDeCompositor(1)
-	var condicionLuna3 = new CondicionDeCancionBienInterpretada(cancionAlicia) var
-	cancionAlicia = new Cancion()
+	var condicionLuna3 = new CondicionDeCancionBienInterpretada(cancionAlicia) 
+	
 
 	method cancionAlicia() {
 		cancionAlicia.nombre("Alicia en el pais de las maravillas")
 		cancionAlicia.duracion(510)
-		cancionAlicia.letra("Quien sabe Alicia, este paÌs no estuvo hecho porque sÌ. Te vas a ir, vas a salir pero te quedas, ødÛnde m·s vas a ir? Y es que aquÌ, sabes el trabalenguas, trabalenguas, el asesino te asesina, y es mucho para ti. Se acabÛ ese juego que te hacÌa feliz.")
+		cancionAlicia.letra("Quien sabe Alicia.")
 		return cancionAlicia
 	}
 	
@@ -52,15 +53,7 @@ describe "tests para las presentaciones" {
 	method presentacionLunaPark2() {
 		presentacionLuna2.lugar(lunaPark)
 		presentacionLuna2.fecha(new Date(15, 12, 2017))
-		presentacionLuna2.condicionesParaParticipar(condicionLuna1, condicionLuna2, condicionLuna3)
-
-		/* y tampoco aceptamos m√∫sicos que no puedan ejecutar la canci√≥n ‚ÄúCanci√≥n de Alicia en el pa√≠s‚Ä?
-		 que dura 510 segundos y tiene como letra ‚ÄúQui√©n sabe Alicia, este pa√≠s no estuvo hecho
-		  porque s√≠. Te vas a ir, vas a salir pero te quedas, ¬ød√≥nde m√°s vas a ir? Y es que aqu√≠, 
-		  sabes el trabalenguas, trabalenguas, el asesino te asesina, y es mucho para ti. 
-		  Se acab√≥ ese juego que te hac√≠a feliz.‚Ä? 
-		
-		*/
+		presentacionLuna2.condicionesParaParticipar([condicionLuna1, condicionLuna2, condicionLuna3])
 	}
 
 	test "Joaquin cobra 50 por presentarse en el luna park" {
@@ -120,7 +113,14 @@ describe "tests para las presentaciones" {
 		self.presentacionLaTrastienda()
 		assert.equals(1650, presentacionLaTrastienda.costo())
 	}
-
+	
+	test "luisAlberto puede participar en presentacionLuna2"{
+		self.presentacionLunaPark2()
+		
+	assert.throwsExceptionWithMessage("El musico no cumple la condicion impuesta", {presentacionLuna2.sumarArtista(lucia)})
+		
+		
+	}
 }
 
 

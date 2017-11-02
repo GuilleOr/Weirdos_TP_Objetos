@@ -64,7 +64,9 @@ describe "tests para los musicos" {
 		
 	}
 	method mushup1(){
-		
+	mushup1.canciones(cancionAlmaDeDiamante)
+	mushup1.canciones(cancionCrisantemo)
+	return mushup1
 	}
 
 	method remixLaFamilia(){
@@ -355,12 +357,6 @@ describe "tests para los musicos" {
 		assert.equals(703,luisAlberto.duracionDeLaObra())
 	}
 	
-	test "a ver si funciona cancoin remixada"{
-		self.cancionRemixada()
-		
-		assert.equals("mueve tu cuelpo hola yeah oh yeah", cancionRemixada.letra())
-	}
-	
 	test "probar criterios la cancion de mayor duracion en segundos de para los arboles"{
 		self.paraLosArboles()
 		self.cancionAlmaDeDiamante()
@@ -407,10 +403,11 @@ describe "tests para los musicos" {
 		assert.equals("mueve tu cuelpo baby Quiero brindar por mi gente sencilla, por el amor brindo por la familia yeah oh yeah", remixLaFamilia.letra())
 	}
 	
-//	test "Saber cuál es la duración del mashup de Alma de Diamante y  Crisantemo"{
-//			
-//	}
-	
+	test "Saber cuál es la duración del mashup de Alma de Diamante y  Crisantemo"{
+		self.mushup1()
+		
+		assert.equals(216, mushup1.duracion())	
+	}
 	
 	
 	

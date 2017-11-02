@@ -4,8 +4,8 @@ import Album.*
 class Criterio {
 	
 	
-//	method comparar(album) = album.canciones().sortedBy(self.getCriterio()).head()
-	method comparar(album) = album.canciones().max{self.getCriterio()}
+	method comparar(album) = album.canciones().sortedBy(self.getCriterio()).head()
+//	method comparar(album) = album.canciones().max{self.getCriterio()}
 	
 	method getCriterio()
 	

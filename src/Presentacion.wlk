@@ -19,6 +19,14 @@ class Presentacion {
 
 	method sumarArtista(artista) {
 		self.artistas().add(artista)
+		
+
+	}
+	method sumarArtistaCondiciones(artista) {
+		if(self.cumpleCondiciones(artista)){
+		self.artistas().add(artista)
+		}
+
 	}
 
 	method eliminarArtista(artista){
@@ -38,7 +46,10 @@ class Presentacion {
 	}
 	
 	method cumpleCondiciones(musico){
-		condicionesParaParticipar.forEach { condicion => condicion.chequear(musico) }
+		return condicionesParaParticipar.forEach { condicion => condicion.ejecutarCondicion(musico) }
 	}
+	
+	
+
 	
 }
