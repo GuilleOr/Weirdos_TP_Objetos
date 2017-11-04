@@ -38,4 +38,6 @@ class Cancion {
 		return letra.size()
 	}
 	
+	method impar() = self.duracion().odd()
+	
 }

@@ -4,12 +4,29 @@ class Musico {
 	var habilidad
 	var grupo = null
 	var albumes = #{ }
+	var categoria
+	var tipoMusico
 	
-
-	constructor(habilidadNumerica, susAlbumes) {
-		habilidad = habilidadNumerica albumes = susAlbumes
+	constructor(_habilidadNumerica, _susAlbumes) {
+		habilidad = _habilidadNumerica
+		albumes = _susAlbumes
 	}
 
+
+	method esSolista() = self.grupo() == null
+	
+	method tipoMusico(_tipoMusico){
+		tipoMusico = _tipoMusico
+	} 
+
+	method tipoMusico() = tipoMusico
+	
+	method categoria() = categoria
+	
+	method categoria(_categoria){
+		categoria = _categoria
+	}
+	
 	method habilidad() = habilidad
 
 	method habilidad(_habilidad) {
@@ -35,11 +52,8 @@ class Musico {
 	method agregarAlbum(album){
 		albumes.add(album)
 	}
-
-	method esSolista() = self.grupo() == null
 	
 	method tieneGrupo() = self.grupo() != null
-
 	method minimalista() {
 		return albumes.all({ album => album.minimalista() })
 	}
@@ -57,13 +71,17 @@ class Musico {
 	}
 		
 	method interpretaBien(cancion) = self.esDeSuAutoria(cancion) || self.cumpleCondicionDeHabilidad() 
-	|| self.condicionExtraInterpretacion(cancion)
+								       || self.categoria().interpretaBien(cancion)
 	
-	method esDeSuAutoria(cancion) = self.albumes().any{ album => album.canciones().contains(cancion)}
+	method esDeSuAutoria(cancion) = self.albumes().any{ album => album.tieneCancion(cancion)}
 	
-	method cumpleCondicionDeHabilidad() = self.habilidad() > 60
+	method cumpleCondicionDeHabilidad() = self.habilidad() > 60 
 	
-	method condicionExtraInterpretacion(cancion)
+	method bienInterpretadas(canciones) {
+		 return canciones.filter{cancion => self.interpretaBien(cancion)}
+	}	
+	
+	
 	
 	
 	

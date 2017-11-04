@@ -1,17 +1,17 @@
 import Musico.*
 
-class DeGrupo inherits Musico {
+class DeGrupo {
+	
 	var aumento
-
-	constructor(habilidadNumerica, susAlbumes, _aumento) = self (
-	habilidadNumerica , susAlbumes ) {
+	
+	constructor(_aumento){
 		aumento = _aumento
 	}
 
-	override method habilidad() {
-		if (self.grupo() != null) {
-			return habilidad + aumento
-		} return habilidad
+	method habilidad(musico) {
+		if (musico.grupo() != null) {
+			return musico.habilidad() + aumento
+		} return musico.habilidad()
 	}
 
 	method costo(presentacion) {
@@ -21,7 +21,5 @@ class DeGrupo inherits Musico {
 			}
 		} return 100
 	}
-	
-	override method condicionExtraInterpretacion(cancion) = cancion.duracion() > 300 
 	
 }

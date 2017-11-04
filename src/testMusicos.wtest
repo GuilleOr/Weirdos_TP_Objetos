@@ -14,14 +14,28 @@ import estados.*
 import cancionRemixada.*
 import mashup.*
 import criterios.*
+import Musico.*
+import Interpretes.*
 
 
 describe "tests para los musicos" {
-	var kike = new DeGrupo(60, [ ], 20)
-	var soledad = new VocalistaPopular(55, [ ], "amor")
+//	var kike = new DeGrupo(60, [ ], 20)
 
-	var joaquin = new DeGrupo(20, [ ], 5)
-	var lucia = new VocalistaPopular(70, [ ], "familia")
+	var kike = new Musico(60,[])
+	var deGrupoKike = new DeGrupo(20)
+	
+//	var soledad = new VocalistaPopular(55, [ ], "amor")
+	var soledad = new Musico(55,[])
+
+
+//	var joaquin = new DeGrupo(20, [ ], 5)
+	var joaquin = new Musico(20,[])
+	var deGrupoJoaquin = new DeGrupo(5)
+
+//	var lucia = new VocalistaPopular(70, [ ], "familia")
+	var lucia  = new Musico(70,[])
+	var palabreroLucia = new Palabrero("familia")
+	
 
 	var pimpinela = new Grupo()
 
@@ -61,8 +75,23 @@ describe "tests para los musicos" {
 		luisAlberto.agregarAlbum(justCrisantemo)
 		justCrisantemo.agregarCancion(cancionCrisantemo)
 		
+		kike.tipoMusico(deGrupoKike)
+		soledad.tipoMusico(vocalistaPopular)
+		joaquin.tipoMusico(deGrupoJoaquin)
+		lucia.categoria(palabreroLucia)
+		lucia.tipoMusico(vocalistaPopular)
+		
+		
 		
 	}
+	
+	method joaquinLarguero(){
+		joaquin.categoria(new Larguero(300))
+		self.especialLaFamilia()
+		joaquin.agregarAlbum(especialLaFamilia)
+		return joaquin
+	}
+	
 	method mushup1(){
 	mushup1.canciones(cancionAlmaDeDiamante)
 	mushup1.canciones(cancionCrisantemo)
@@ -82,6 +111,7 @@ describe "tests para los musicos" {
 		cancionLaFamilia.nombre("LaFamilia")
 		cancionLaFamilia.duracion(264)
 		cancionLaFamilia.letra("Quiero brindar por mi gente sencilla, por el amor brindo por la familia")
+		cancionLaFamilia.autor(joaquin)
 		return cancionLaFamilia
 	}
 
@@ -122,6 +152,7 @@ describe "tests para los musicos" {
 	}
 
 	method especialLaFamilia() {
+		self.cancionLaFamilia()
 		especialLaFamilia.titulo("especial la familia")
 		especialLaFamilia.fechaLanzamiento(new Date(17, 06, 1992))
 		especialLaFamilia.vendidos(89000)
@@ -160,7 +191,7 @@ describe "tests para los musicos" {
 	}
 
 	test "Joaquin del grupo pimpinela tiene una habilidad de 25" {
-
+		
 		assert.equals(25, joaquin.habilidad())
 	}
 
@@ -175,12 +206,14 @@ describe "tests para los musicos" {
 
 	test "Joaquin no interpreta bien la cancion 'la familia'" {
 		self.cancionLaFamilia()
+		self.joaquinLarguero()
 		assert.notThat(joaquin.interpretaBien(cancionLaFamilia))
 
 	}
 
 	test "Joaquin si interpreta bien la cancion 'cisne'" {
 		self.cancionElCisne()
+		self.joaquinLarguero()
 		assert.that(joaquin.interpretaBien(cancionCisne))
 	}
 
@@ -404,10 +437,15 @@ describe "tests para los musicos" {
 	}
 	
 	test "Saber cuál es la duración del mashup de Alma de Diamante y  Crisantemo"{
+		
 		self.mushup1()
 		
-		assert.equals(216, mushup1.duracion())	
+		assert.equals(216, mushup1.duracion())
 	}
+	
+	
+	
+	
 	
 	
 	

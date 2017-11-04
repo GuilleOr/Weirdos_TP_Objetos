@@ -1,7 +1,7 @@
 import Cancion.*
 
 class Mushup inherits Cancion {
-	var canciones = #{ }
+	var canciones = #{}
 	var letraCompleta
 
 	method canciones(cancion){

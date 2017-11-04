@@ -1,20 +1,12 @@
 import Musico.*
 
-class VocalistaPopular inherits Musico {
-	var palabra
-
-	constructor(habilidadNumerica, susAlbumes, palabraBien) = self (
-	habilidadNumerica , susAlbumes ) {
-		palabra = palabraBien
-	}
+object vocalistaPopular {
 	
-	override method habilidad() {
-		if (self.grupo() != null) {
-			return habilidad - 20
-		} return habilidad
+	method habilidad(musico) {
+		if (musico.grupo() != null) {
+			return musico.habilidad() - 20
+		} return musico.habilidad()
 	}
-
-	override method condicionExtraInterpretacion(cancion) = cancion.contiene(palabra)
 
 	method costo(presentacion) {
 		if (presentacion.lugar().capacidad(presentacion.fecha()) > 5000) {

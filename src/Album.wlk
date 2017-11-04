@@ -62,5 +62,7 @@ class Album {
 		return vendidos > 0.75 * salieron
 	}
 	
+	method tieneCancion(cancion) = self.canciones().contains(cancion)
+	
 	
 }
