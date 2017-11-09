@@ -3,7 +3,7 @@ class Presentacion {
 	var fecha
 	var artistas = [ ]
 	var lugar
-	var condicionesParaParticipar = []
+	var condicionesParaParticipar = [ ]
 
 	method fecha(_fecha) {
 		fecha = _fecha
@@ -19,17 +19,17 @@ class Presentacion {
 
 	method sumarArtista(artista) {
 		self.artistas().add(artista)
-		
 
 	}
 	method sumarArtistaCondiciones(artista) {
-		if(self.cumpleCondiciones(artista)){
-		self.artistas().add(artista)
-		}
-
+		if (self.condicionesParaParticipar() != null) {
+			if (self.cumpleCondiciones(artista)) {
+				self.artistas().add(artista)
+			}
+		}else self.artistas().add(artista)
 	}
 
-	method eliminarArtista(artista){
+	method eliminarArtista(artista) {
 		self.artistas().remove(artista)
 	}
 
@@ -38,18 +38,15 @@ class Presentacion {
 	method capacidad() = lugar.capacidad(fecha)
 
 	method costo() = self.artistas().sum({ artista => artista.costo(self) })
-	
-	method condicionesParaParticipar()=condicionesParaParticipar
-	
-	method condicionesParaParticipar(condiciones){
+
+	method condicionesParaParticipar() = condicionesParaParticipar
+
+	method condicionesParaParticipar(condiciones) {
 		condicionesParaParticipar = condiciones
 	}
-	
-	method cumpleCondiciones(musico){
-		return condicionesParaParticipar.forEach { condicion => condicion.ejecutarCondicion(musico) }
-	}
-	
-	
 
-	
+	method cumpleCondiciones(musico) {
+	return	condicionesParaParticipar.forEach{ condicion =>
+		condicion.ejecutarCondicion(musico) }
+	}
 }

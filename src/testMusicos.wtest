@@ -15,7 +15,6 @@ import cancionRemixada.*
 import mashup.*
 import criterios.*
 
-
 describe "tests para los musicos" {
 	var kike = new DeGrupo(60, [ ], 20)
 	var soledad = new VocalistaPopular(55, [ ], "amor")
@@ -39,9 +38,8 @@ describe "tests para los musicos" {
 
 	var cancionRemixada = new CancionRemixada()
 	var remixLaFamilia = new CancionRemixada()
-	
+
 	var mushup1 = new Mushup()
-	
 
 	fixture {
 		pimpinela.agregarIntegrante(lucia)
@@ -60,24 +58,23 @@ describe "tests para los musicos" {
 		paraLosArboles.agregarCancion(cancionAlmaDeDiamante)
 		luisAlberto.agregarAlbum(justCrisantemo)
 		justCrisantemo.agregarCancion(cancionCrisantemo)
-		
-		
+
 	}
-	method mushup1(){
-	mushup1.canciones(cancionAlmaDeDiamante)
-	mushup1.canciones(cancionCrisantemo)
-	return mushup1
+	method mushup1() {
+		mushup1.canciones(cancionAlmaDeDiamante)
+		mushup1.canciones(cancionCrisantemo)
+		return mushup1
 	}
 
-	method remixLaFamilia(){
+	method remixLaFamilia() {
 		remixLaFamilia.cancionOriginal(cancionLaFamilia)
 		return remixLaFamilia
 	}
-	method cancionRemixada(){
+	method cancionRemixada() {
 		cancionRemixada.letra("hola")
 		return cancionRemixada
 	}
-	
+
 	method cancionLaFamilia() {
 		cancionLaFamilia.nombre("LaFamilia")
 		cancionLaFamilia.duracion(264)
@@ -101,7 +98,7 @@ describe "tests para los musicos" {
 	}
 
 	method cancionCorazonAmericano() {
-		cancionCorazonAmericano("corazonAmericano")
+		cancionCorazonAmericano ( "corazonAmericano" )
 		cancionCorazonAmericano.duracion(154)
 		cancionCorazonAmericano.letra("Canta corazon, canta mas alto, que tu pena al fin se va marchando, el nuevo milenio ha de encontrarnos, junto corazon, como soniamos")
 		return cancionCorazonAmericano
@@ -115,6 +112,7 @@ describe "tests para los musicos" {
 	}
 
 	method cancionCrisantemo() {
+		cancionCrisantemo.autor(luisAlberto)
 		cancionCrisantemo.nombre("crisantemo")
 		cancionCrisantemo.duracion(175)
 		cancionCrisantemo.letra("Tocame junto a esta pared, yo quede por aqui... cuando no hubo mas luz... quiero mirar a traves de mi piel... Crisantemo, que se abrio... encuentra el camino hacia el cielo")
@@ -257,7 +255,7 @@ describe "tests para los musicos" {
 		self.laSole()
 		self.cancionCorazonAmericano()
 		self.cancionEres()
-		
+
 		assert.that(soledad.minimalista())
 	}
 
@@ -266,56 +264,57 @@ describe "tests para los musicos" {
 		self.justCrisantemo()
 		self.cancionCrisantemo()
 		self.cancionAlmaDeDiamante()
-		
+
 		assert.notThat(luisAlberto.minimalista())
 	}
 
 	test "saber si joaquin no es minimalista" {
 		self.especialLaFamilia()
 		self.cancionLaFamilia()
-		
+
 		assert.notThat(joaquin.minimalista())
 	}
 
-	test "saber que canciones de LuisAlberto tienen la palabra 'pujante' "{
+	test "saber que canciones de LuisAlberto tienen la palabra 'pujante' " {
 		self.cancionAlmaDeDiamante()
 		self.cancionCrisantemo()
 		self.cancionElCisne()
-		
-		assert.equals([],luisAlberto.cualesContienen("pujante"))
-				
-	} 
-	test "saber que canciones de LuisAlberto tienen la palabra 'cielo' "{
+
+		assert.equals([ ], luisAlberto.cualesContienen("pujante"))
+
+	}
+	test "saber que canciones de LuisAlberto tienen la palabra 'cielo' " {
 		self.cancionAlmaDeDiamante()
 		self.cancionCrisantemo()
 		self.cancionElCisne()
-		
-		assert.equals([cancionCrisantemo,cancionAlmaDeDiamante],luisAlberto.cualesContienen("cielo"))
-				
-	} 
-	
-	test "saber que cancion es la mas larga del album 'para los arboles' "{
+
+		assert.equals([ cancionCrisantemo, cancionAlmaDeDiamante
+		], luisAlberto.cualesContienen("cielo"))
+
+	}
+
+	test "saber que cancion es la mas larga del album 'para los arboles' " {
 		self.paraLosArboles()
 		self.cancionAlmaDeDiamante()
 		self.cancionElCisne()
 
 		assert.equals(cancionAlmaDeDiamante, paraLosArboles.laMasLarga())
 	}
-	
-	test "cuantas palabras tiene alma de diamante"{
+
+	test "cuantas palabras tiene alma de diamante" {
 		self.cancionAlmaDeDiamante()
 		assert.equals(25, cancionAlmaDeDiamante.cantidadDePalabras())
 	}
-	
-	test "saber que cancion es la mas larga del album 'especial la familia' "{
+
+	test "saber que cancion es la mas larga del album 'especial la familia' " {
 		self.cancionLaFamilia()
 		assert.equals(cancionLaFamilia, especialLaFamilia.laMasLarga())
 	}
-	
-	test "saber que cancion es la mas larga del album 'la sole' "{
+
+	test "saber que cancion es la mas larga del album 'la sole' " {
 		self.cancionEres()
 		self.cancionCorazonAmericano()
-		
+
 		assert.equals(cancionEres, laSole.laMasLarga())
 	}
 
@@ -333,84 +332,98 @@ describe "tests para los musicos" {
 
 	test "saber si soledad no 'la pego' " {
 		self.laSole()
-		
+
 		assert.notThat(soledad.laPego())
 	}
-	
-	test "la obra de kike dura 0 segundos"{
-		
+
+	test "la obra de kike dura 0 segundos" {
+
 		assert.equals(0, kike.duracionDeLaObra())
 	}
-	test "la obra de soledad dura 299 segundos"{
+	test "la obra de soledad dura 299 segundos" {
 		self.laSole()
 		self.cancionCorazonAmericano()
 		self.cancionEres()
-		
-		assert.equals(299,soledad.duracionDeLaObra())
+
+		assert.equals(299, soledad.duracionDeLaObra())
 	}
-	test "la obra de luisAlberto dura 703 segundos"{
+	test "la obra de luisAlberto dura 703 segundos" {
 		self.paraLosArboles()
 		self.justCrisantemo()
 		self.cancionCrisantemo()
 		self.cancionAlmaDeDiamante()
 		self.cancionElCisne()
-		assert.equals(703,luisAlberto.duracionDeLaObra())
+		assert.equals(703, luisAlberto.duracionDeLaObra())
 	}
-	
-	test "probar criterios la cancion de mayor duracion en segundos de para los arboles"{
+
+	test
+	"probar criterios la cancion de mayor duracion en segundos de para los arboles"
+	{
 		self.paraLosArboles()
 		self.cancionAlmaDeDiamante()
 		self.cancionElCisne()
-		
+
 		assert.equals(cancionCisne, criterioDuracion.comparar(paraLosArboles))
 	}
-	test "Saber cuál es la canción más larga del álbum “La Sole”, teniendo en cuenta la longitud de la letra"{
+	test
+	"Saber cuál es la canción más larga del álbum “La Sole”, teniendo en cuenta la longitud de la letra"
+	{
 		self.laSole()
 		self.cancionCorazonAmericano()
 		self.cancionEres()
-		
+
 		assert.equals(cancionEres, criterioLetra.comparar(laSole))
-	
+
 	}
 
-	test "Saber cuál es la canción más larga del álbum “Especial La Familia”, teniendo en cuenta la duración"{
+	test
+	"Saber cuál es la canción más larga del álbum “Especial La Familia”, teniendo en cuenta la duración"
+	{
 		self.especialLaFamilia()
 		self.cancionLaFamilia()
-		
-		assert.equals(cancionLaFamilia,criterioDuracion.comparar(especialLaFamilia))
+
+		assert.equals(cancionLaFamilia, criterioDuracion.comparar(especialLaFamilia))
 	}
-	
-	test "Saber cuál es la canción más larga del álbum “La Sole”, teniendo en cuenta la duración"{
+
+	test
+	"Saber cuál es la canción más larga del álbum “La Sole”, teniendo en cuenta la duración"
+	{
 		self.laSole()
 		self.cancionCorazonAmericano()
 		self.cancionEres()
-		
+
 		assert.equals(cancionCorazonAmericano, criterioDuracion.comparar(laSole))
 	}
-	
-	test "Saber cuánto dura el remix de La Familia "{
+
+	test "Saber cuánto dura el remix de La Familia " {
 		self.cancionLaFamilia()
 		self.remixLaFamilia()
-		
-		assert.equals(792, remixLaFamilia.duracion()
-		)
+
+		assert.equals(792, remixLaFamilia.duracion())
 	}
-	
-	test "Saber cual es la letra del remix de la familia"{
+
+	test "Saber cual es la letra del remix de la familia" {
 		self.cancionLaFamilia()
 		self.remixLaFamilia()
-		
+
 		assert.equals("mueve tu cuelpo baby Quiero brindar por mi gente sencilla, por el amor brindo por la familia yeah oh yeah", remixLaFamilia.letra())
 	}
-	
-	test "Saber cuál es la duración del mashup de Alma de Diamante y  Crisantemo"{
+
+	test "Saber cuál es la duración del mashup de Alma de Diamante y  Crisantemo"
+	{
+		self.cancionAlmaDeDiamante()
+		self.cancionCrisantemo()
 		self.mushup1()
-		
-		assert.equals(216, mushup1.duracion())	
+
+		assert.equals(216, mushup1.duracionMash())
 	}
-	
-	
-	
-	
-	
+	test "Saber cuál es la letra del mashup de Alma de Diamante y  Crisantemo"
+	{
+		self.cancionAlmaDeDiamante()
+		self.cancionCrisantemo()
+		self.mushup1()
+
+		assert.equals("Ven a mi con tu dulce alma de diamante. Y aunque el sol se nuble despues sos alma de diamante. Cielo o piel silencio o verdad sos alma de diamante. Por eso ven asi con la humanidad alma de diamante Tocame junto a esta pared, yo quede por aqui... cuando no hubo mas luz... quiero mirar a traves de mi piel... Crisantemo, que se abrio... encuentra el camino hacia el cielo", mushup1.letraPara())
+	}
+
 }

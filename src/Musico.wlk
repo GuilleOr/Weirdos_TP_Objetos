@@ -4,12 +4,13 @@ class Musico {
 	var habilidad
 	var grupo = null
 	var albumes = #{ }
+	var cancionesDeAutor
 	
 
 	constructor(habilidadNumerica, susAlbumes) {
 		habilidad = habilidadNumerica albumes = susAlbumes
 	}
-
+	
 	method habilidad() = habilidad
 
 	method habilidad(_habilidad) {

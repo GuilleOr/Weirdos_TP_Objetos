@@ -56,7 +56,7 @@ class CondicionDeCompositor inherits Condicion{
 
 	method cantidadMinimaDeCanciones()=cantidadMinimaDeCanciones
 
-	override method getCondicion(musico) = musico.albumes().flatMap({ album => album.canciones() }).filter{ cancion => musico.esDeSuAutoria(cancion)}.size() > self.cantidadMinimaDeCanciones()
+	override method getCondicion(musico) = musico.albumes().flatMap({ album => album.canciones() }).filter{ cancion => musico.esDeSuAutoria(cancion)}.size() >= self.cantidadMinimaDeCanciones()
 
 
 

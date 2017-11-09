@@ -11,27 +11,54 @@ import VocalistaPopular.*
 import Grupo.*
 import restricciones.*
 import Condiciones.*
+import Album.*
 
 describe "tests para las presentaciones" {
 	var joaquin = new DeGrupo(20, [ ], 5)
 	var lucia = new VocalistaPopular(70, [ ], "familia")
+	var soledad = new VocalistaPopular(55, [ ], "amor")
 	var presentacionLuna = new Presentacion()
 	var presentacionLaTrastienda = new Presentacion()
 	var presentacionLuna2 = new Presentacion()
 	var cancionAlicia = new Cancion()
 
+	var justCrisantemo = new Album() 
+	var cancionCrisantemo = new Cancion()
+	
 	var condicionLuna1 = new CondicionDeHabilidad(70)
 	var condicionLuna2 = new CondicionDeCompositor(1)
-	var condicionLuna3 = new CondicionDeCancionBienInterpretada(cancionAlicia) 
-	
-
+	var condicionLuna3 = new CondicionDeCancionBienInterpretada(cancionAlicia)
+	fixture {
+		lucia.habilidadNueva(90)
+		soledad.habilidadNueva(80)
+		
+		luisAlberto.guitarra(fender)
+		luisAlberto.agregarAlbum(justCrisantemo)
+	}
+	method justCrisantemo() {
+		justCrisantemo.titulo("just crisantemo")
+		justCrisantemo.fechaLanzamiento(new Date(05, 12, 2007))
+		justCrisantemo.vendidos(27500)
+		justCrisantemo.salieron(28000)
+		justCrisantemo.agregarCancion(cancionCrisantemo)
+		justCrisantemo.agregarCancion(cancionAlicia)
+		return justCrisantemo
+	}
+	method cancionCrisantemo() {
+		cancionCrisantemo.autor(luisAlberto)
+		cancionCrisantemo.nombre("crisantemo")
+		cancionCrisantemo.duracion(175)
+		cancionCrisantemo.letra("Tocame junto a esta pared, yo quede por aqui... cuando no hubo mas luz... quiero mirar a traves de mi piel... Crisantemo, que se abrio... encuentra el camino hacia el cielo")
+		return cancionCrisantemo
+	}
 	method cancionAlicia() {
+		cancionAlicia.autor(luisAlberto)
 		cancionAlicia.nombre("Alicia en el pais de las maravillas")
 		cancionAlicia.duracion(510)
 		cancionAlicia.letra("Quien sabe Alicia.")
 		return cancionAlicia
 	}
-	
+
 	method presentacionLunaPark() {
 		presentacionLuna.lugar(lunaPark)
 		presentacionLuna.sumarArtista(joaquin)
@@ -53,7 +80,8 @@ describe "tests para las presentaciones" {
 	method presentacionLunaPark2() {
 		presentacionLuna2.lugar(lunaPark)
 		presentacionLuna2.fecha(new Date(15, 12, 2017))
-		presentacionLuna2.condicionesParaParticipar([condicionLuna1, condicionLuna2, condicionLuna3])
+		presentacionLuna2.condicionesParaParticipar([
+		condicionLuna1, condicionLuna2, condicionLuna3 ])
 	}
 
 	test "Joaquin cobra 50 por presentarse en el luna park" {
@@ -113,14 +141,33 @@ describe "tests para las presentaciones" {
 		self.presentacionLaTrastienda()
 		assert.equals(1650, presentacionLaTrastienda.costo())
 	}
-	
-	test "luisAlberto puede participar en presentacionLuna2"{
+
+	test "joaquin no puede participar de pdepalooza" {
 		self.presentacionLunaPark2()
-		
-	assert.throwsExceptionWithMessage("El musico no cumple la condicion impuesta", {presentacionLuna2.sumarArtista(lucia)})
-		
-		
+		assert.throwsException({ presentacionLuna2.sumarArtistaCondiciones(joaquin)
+		})
 	}
+
+	test "luisAlberto puede participar en presentacionLuna2" {
+		self.cancionCrisantemo()
+		self.justCrisantemo()
+		self.presentacionLunaPark2()
+		self.cancionAlicia()
+
+		assert.throwsException({
+		presentacionLuna2.sumarArtistaCondiciones(luisAlberto) })
+
+		//assert.throwsExceptionWithMessage("El musico no cumple la condicion impuesta", {presentacionLuna2.sumarArtistaCondiciones(luisAlberto)})
+
+
+	}
+	
+	test "es de su autoria"{
+		self.cancionAlicia()
+		self.justCrisantemo()
+		assert.that(luisAlberto.interpretaBien(cancionAlicia))
+	}
+
 }
 
 

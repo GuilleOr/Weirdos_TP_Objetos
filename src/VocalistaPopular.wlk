@@ -7,6 +7,7 @@ class VocalistaPopular inherits Musico {
 	habilidadNumerica , susAlbumes ) {
 		palabra = palabraBien
 	}
+	method habilidadNueva(_habilidad) { habilidad = _habilidad }
 	
 	override method habilidad() {
 		if (self.grupo() != null) {

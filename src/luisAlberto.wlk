@@ -1,4 +1,5 @@
 import Musico.*
+import estados.*
 
 object luisAlberto inherits Musico ( 0 , #{}) {
 	var guitarra
@@ -23,5 +24,6 @@ object luisAlberto inherits Musico ( 0 , #{}) {
 		} return 1000
 	}
 	
-	override method interpretaBien(cancion)=true 
+	override method interpretaBien(cancion) = true 
+	override method condicionExtraInterpretacion(cancion) { }
 }

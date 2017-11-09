@@ -1,15 +1,17 @@
 import Cancion.*
 
-class Mushup inherits Cancion {
+class Mushup {
 	var canciones = #{ }
 	var letraCompleta
 
-	method canciones(cancion){
+	method canciones(cancion) {
 		canciones.add(cancion)
 	}
-	override method duracion() = canciones.map{ cancion => cancion.duracion()}.max()
+	method duracionMash() = canciones.map{ cancion => cancion.duracion() }.max()
 
-	override method letra() = canciones.forEach{ cancion => letraCompleta = letraCompleta + cancion.letra()
-	return letraCompleta.trim()
+	method letraPara() {
+		canciones.forEach{ cancion => letraCompleta = letraCompleta + cancion.letra() }
+		return letraCompleta.trim()
+
+		}
 	}
-}
