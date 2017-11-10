@@ -22,16 +22,16 @@ describe "tests para las presentaciones" {
 	var presentacionLuna2 = new Presentacion()
 	var cancionAlicia = new Cancion()
 
-	var justCrisantemo = new Album() 
+	var justCrisantemo = new Album()
 	var cancionCrisantemo = new Cancion()
-	
+
 	var condicionLuna1 = new CondicionDeHabilidad(70)
 	var condicionLuna2 = new CondicionDeCompositor(1)
 	var condicionLuna3 = new CondicionDeCancionBienInterpretada(cancionAlicia)
 	fixture {
 		lucia.habilidadNueva(90)
 		soledad.habilidadNueva(80)
-		
+
 		luisAlberto.guitarra(fender)
 		luisAlberto.agregarAlbum(justCrisantemo)
 	}
@@ -157,17 +157,25 @@ describe "tests para las presentaciones" {
 		assert.throwsException({
 		presentacionLuna2.sumarArtistaCondiciones(luisAlberto) })
 
-		//assert.throwsExceptionWithMessage("El musico no cumple la condicion impuesta", {presentacionLuna2.sumarArtistaCondiciones(luisAlberto)})
-
-
 	}
-	
-	test "es de su autoria"{
+
+	test "es de su autoria" {
 		self.cancionAlicia()
 		self.justCrisantemo()
 		assert.that(luisAlberto.interpretaBien(cancionAlicia))
 	}
 
+	test "lucia no puede participar de pdepalooza" {
+		self.presentacionLunaPark2()
+		assert.throwsException({ presentacionLuna2.sumarArtistaCondiciones(lucia)
+		})
+	}
+		
+	test "soledad no puede participar de pdepalooza" {
+			self.presentacionLunaPark2()
+			assert.throwsException({ presentacionLuna2.sumarArtistaCondiciones(soledad)
+			})
+		}
 }
 
 

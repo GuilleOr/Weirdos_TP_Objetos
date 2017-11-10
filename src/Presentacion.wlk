@@ -23,10 +23,14 @@ class Presentacion {
 	}
 	method sumarArtistaCondiciones(artista) {
 		if (self.condicionesParaParticipar() != null) {
-			if (self.cumpleCondiciones(artista)) {
-				self.artistas().add(artista)
-			}
-		}else self.artistas().add(artista)
+			self.validarCondiciones(artista)
+			self.sumarArtista(artista)
+		}else self.sumarArtista(artista)
+	}
+	
+	method validarCondiciones(artista){
+		condicionesParaParticipar.forEach{ condicion =>
+		condicion.ejecutarCondicion(artista) }
 	}
 
 	method eliminarArtista(artista) {
