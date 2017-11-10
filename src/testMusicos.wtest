@@ -14,13 +14,22 @@ import estados.*
 import cancionRemixada.*
 import mashup.*
 import criterios.*
+import representante.*
+import banda.*
+import Musico.*
+import Presentacion.*
 
 describe "tests para los musicos" {
-	var kike = new DeGrupo(60, [ ], 20)
+//var kike = new DeGrupo(60, [ ], 20)
+	var kike = new Musico(60, [ ])
+
 	var soledad = new VocalistaPopular(55, [ ], "amor")
 
-	var joaquin = new DeGrupo(20, [ ], 5)
-	var lucia = new VocalistaPopular(70, [ ], "familia")
+	//var joaquin = new DeGrupo(20, [ ], 5)
+	var joaquin = new Musico(20, [ ])
+
+	//var lucia = new VocalistaPopular(70, [ ], "familia")
+	var lucia = new Musico(70, [ ])
 
 	var pimpinela = new Grupo()
 
@@ -30,6 +39,7 @@ describe "tests para los musicos" {
 	var cancionCorazonAmericano = new Cancion()
 	var cancionAlmaDeDiamante = new Cancion()
 	var cancionCrisantemo = new Cancion()
+	var cancionAlicia = new Cancion()
 
 	var especialLaFamilia = new Album()
 	var laSole = new Album()
@@ -59,6 +69,19 @@ describe "tests para los musicos" {
 		luisAlberto.agregarAlbum(justCrisantemo)
 		justCrisantemo.agregarCancion(cancionCrisantemo)
 
+		//entrega 4
+		joaquin.tipo(new Larguero(300))
+		joaquin.precio(100)
+		joaquin.tipoCobro(new CobroPorCantidadDeArtistas())
+
+		lucia.tipo(new Palabrero("familia"))
+		lucia.precio(500)
+		lucia.tipoCobro(new CobroPorCapacidad(5000))
+
+		kike.tipo(new Imparero())
+		kike.precio(4000)
+		kike.tipoCobro(new CobroPorExpectativaInflacionaria(new Date(08, 01, 2018), 50))
+
 	}
 	method mushup1() {
 		mushup1.canciones(cancionAlmaDeDiamante)
@@ -73,6 +96,14 @@ describe "tests para los musicos" {
 	method cancionRemixada() {
 		cancionRemixada.letra("hola")
 		return cancionRemixada
+	}
+
+	method cancionAlicia() {
+		cancionAlicia.autor(luisAlberto)
+		cancionAlicia.nombre("Alicia en el pais de las maravillas")
+		cancionAlicia.duracion(510)
+		cancionAlicia.letra("Quien sabe Alicia.")
+		return cancionAlicia
 	}
 
 	method cancionLaFamilia() {
@@ -176,10 +207,23 @@ describe "tests para los musicos" {
 		assert.notThat(joaquin.interpretaBien(cancionLaFamilia))
 
 	}
+	test "Joaquin ahora toca bien la cancion la familia" {
+		joaquin.tipo(new Imparero())
+		self.cancionLaFamilia()
+
+		assert.that(joaquin.interpretaBien(cancionLaFamilia))
+
+	}
 
 	test "Joaquin si interpreta bien la cancion 'cisne'" {
 		self.cancionElCisne()
 		assert.that(joaquin.interpretaBien(cancionCisne))
+	}
+
+	test "Joaquin pasa a ser imparero y ahora no toca bien la cancon el cisne" {
+		joaquin.tipo(new Imparero())
+		self.cancionElCisne()
+		assert.notThat(joaquin.interpretaBien(cancionCisne))
 	}
 
 	test "Lucia canta en el grupo pimpinela y tiene una habilidad de 50" {
@@ -417,13 +461,48 @@ describe "tests para los musicos" {
 
 		assert.equals(216, mushup1.duracionMash())
 	}
-	test "Saber cuál es la letra del mashup de Alma de Diamante y  Crisantemo"
-	{
+	test "Saber cuál es la letra del mashup de Alma de Diamante y  Crisantemo" {
 		self.cancionAlmaDeDiamante()
 		self.cancionCrisantemo()
 		self.mushup1()
 
 		assert.equals("Ven a mi con tu dulce alma de diamante. Y aunque el sol se nuble despues sos alma de diamante. Cielo o piel silencio o verdad sos alma de diamante. Por eso ven asi con la humanidad alma de diamante Tocame junto a esta pared, yo quede por aqui... cuando no hubo mas luz... quiero mirar a traves de mi piel... Crisantemo, que se abrio... encuentra el camino hacia el cielo", mushup1.letraPara())
 	}
+
+	//entrega 4
+
+	test "kike es palabrero e interpreta bien.." {
+		kike.tipo(new Palabrero("de"))
+		self.cancionCorazonAmericano()
+		self.cancionEres()
+		self.cancionLaFamilia()
+		self.cancionElCisne()
+		self.cancionAlmaDeDiamante()
+		self.cancionAlicia()
+		self.cancionCrisantemo()
+
+		assert.equals([
+		cancionCorazonAmericano, cancionEres, cancionAlmaDeDiamante, cancionCrisantemo
+		], kike.bienInterpretadas([
+		cancionCorazonAmericano, cancionEres, cancionLaFamilia, cancionCisne, cancionAlmaDeDiamante, cancionAlicia, cancionCrisantemo
+		]))
+	}
+
+	test "Joaquin interpreta bien..." {
+		self.cancionCorazonAmericano()
+		self.cancionEres()
+		self.cancionLaFamilia()
+		self.cancionElCisne()
+		self.cancionAlmaDeDiamante()
+		self.cancionAlicia()
+		self.cancionCrisantemo()
+
+		assert.equals([
+		cancionLaFamilia, cancionCisne, cancionAlicia
+		], joaquin.bienInterpretadas([
+		cancionCorazonAmericano, cancionEres, cancionLaFamilia, cancionCisne, cancionAlmaDeDiamante, cancionAlicia, cancionCrisantemo
+		]))
+	}
+	
 
 }

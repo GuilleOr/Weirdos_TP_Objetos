@@ -25,10 +25,10 @@ class Presentacion {
 		if (self.condicionesParaParticipar() != null) {
 			self.validarCondiciones(artista)
 			self.sumarArtista(artista)
-		}else self.sumarArtista(artista)
+		} else self.sumarArtista(artista)
 	}
-	
-	method validarCondiciones(artista){
+
+	method validarCondiciones(artista) {
 		condicionesParaParticipar.forEach{ condicion =>
 		condicion.ejecutarCondicion(artista) }
 	}
@@ -50,7 +50,67 @@ class Presentacion {
 	}
 
 	method cumpleCondiciones(musico) {
-	return	condicionesParaParticipar.forEach{ condicion =>
+		return condicionesParaParticipar.forEach{ condicion =>
 		condicion.ejecutarCondicion(musico) }
+	}
+	method sePresentaSolo(unMusico) = self.unSoloArtista() &&
+	self.sePresenta(unMusico)
+	
+	method magia() = self.artistas().sum{ artista => artista.habilidad() }
+	
+	method sePresenta(musico) = self.artistas().contains(musico)
+	
+	method unSoloArtista() {
+		return self.cantidadArtistas() == 1
+	}
+}
+
+class CobroPorCantidadDeArtistas {
+
+	method costo(presentacion, musico) {
+		if (presentacion.sePresentaSolo(musico)) {
+			return musico.costo()
+		} else {
+			return musico.costo() / 2
+		}
+	}
+}
+
+class CobroPorCapacidad {
+	var capacidadMinimaDePersonas
+
+	constructor(capacidad) {
+		capacidadMinimaDePersonas = capacidad
+	}
+
+	method capacidadMinimaDePersonas() = capacidadMinimaDePersonas
+
+	method costo(presentacion, musico) {
+		if (presentacion.laCapacidadEsMayorA(self.capacidadMinimaDePersonas())) {
+			return musico.costo()
+		} else {
+			return musico.costo() - 100
+		}
+	}
+}
+
+class CobroPorExpectativaInflacionaria {
+	var fechaMaxima
+	var porcentajePostFecha
+
+	constructor(unaFecha, unPorcentaje) {
+		fechaMaxima = unaFecha porcentajePostFecha = unPorcentaje
+	}
+
+	method fechaMaxima() = fechaMaxima
+
+	method porcentajePostFecha() = porcentajePostFecha
+
+	method costo(presentacion, musico) {
+		if (presentacion.fechaEsAnteriorA(self.fechaMaxima())) {
+			return musico.precio()
+		} else {
+			return musico.precio() * ( 1 + self.porcentajePostFecha() / 100 )
+		}
 	}
 }
