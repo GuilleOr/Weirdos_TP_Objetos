@@ -37,5 +37,6 @@ class Cancion {
 	method cantidadDePalabras() {
 		return letra.size()
 	}
-	
+	method duracionImpar() = self.duracion().odd()
+
 }

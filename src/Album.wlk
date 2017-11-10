@@ -2,7 +2,7 @@ import Cancion.*
 import criterios.*
 
 class Album {
-	var canciones = []
+	var canciones = [ ]
 	var titulo
 	var fechaLanzamiento
 	var salieron
@@ -37,30 +37,30 @@ class Album {
 	method canciones(_canciones) {
 		canciones = _canciones
 	}
-	
-	method agregarCancion(cancion){
+
+	method agregarCancion(cancion) {
 		canciones.add(cancion)
 	}
 
 	method minimalista() {
-		return canciones.all({cancion => cancion.esCorta()})
-	}
-	
-	method contienen(_palabra) {
-		return canciones.map({cancion => cancion.contiene(_palabra)})
+		return canciones.all({ cancion => cancion.esCorta() })
 	}
 
-	method duracion(){
-		return canciones.sum({cancion => cancion.duracion()})
+	method contienen(_palabra) {
+		return canciones.map({ cancion => cancion.contiene(_palabra) })
+	}
+
+	method duracion() {
+		return canciones.sum({ cancion => cancion.duracion() })
 	}
 
 	method laMasLarga() {
-		return canciones.max({cancion => cancion.cantidadDePalabras()})
+		return canciones.max({ cancion => cancion.cantidadDePalabras() })
 	}
 
 	method buenaVenta() {
 		return vendidos > 0.75 * salieron
 	}
-	
-	
+	method tieneCancion(cancion) = self.canciones().contains(cancion)
+
 }
