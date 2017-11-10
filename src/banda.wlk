@@ -1,5 +1,6 @@
 import representante.*
 
+
 class Banda {
 	var representante
 	const miembros = [ ]
