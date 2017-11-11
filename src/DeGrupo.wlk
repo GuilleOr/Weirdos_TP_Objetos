@@ -21,7 +21,7 @@ class DeGrupo inherits Musico {
 			}
 		} return 100
 	}
-	
-	override method condicionExtraInterpretacion(cancion) = cancion.duracion() > 300 
+
+	//override method condicionExtraInterpretacion(cancion) = cancion.duracion() > 300 
 	
 }

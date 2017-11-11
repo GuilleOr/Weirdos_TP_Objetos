@@ -4,6 +4,7 @@ class Presentacion {
 	var artistas = [ ]
 	var lugar
 	var condicionesParaParticipar = [ ]
+	var bandas = []
 
 	method fecha(_fecha) {
 		fecha = _fecha
@@ -13,7 +14,21 @@ class Presentacion {
 		lugar = _lugar
 	}
 
+method agregarBanda(banda) { self.bandas().add(banda)}
+	method bandas() = bandas
+	method bandas(_bandas) { bandas=_bandas}
+
 	method artistas() = artistas
+
+	method artistasCompletos() {
+		if( self.bandas() != null){
+			return self.artistas() + self.bandas().flatMap({banda => banda.miembros()})
+			
+			}else
+			return self.artistas()
+			
+			}
+			
 	method fecha() = fecha
 	method lugar() = lugar
 
@@ -36,12 +51,15 @@ class Presentacion {
 	method eliminarArtista(artista) {
 		self.artistas().remove(artista)
 	}
+	
+	
 
 	method cantidadArtistas() = self.artistas().size()
 
 	method capacidad() = lugar.capacidad(fecha)
 
-	method costo() = self.artistas().sum({ artista => artista.costo(self,artista) })
+	method costo() = self.artistas().sum({ artista => artista.tipoCobro().costo(self,artista) })
+
 
 	method condicionesParaParticipar() = condicionesParaParticipar
 
@@ -56,7 +74,7 @@ class Presentacion {
 	method sePresentaSolo(unMusico) = self.unSoloArtista() &&
 	self.sePresenta(unMusico)
 	
-	method magia() = self.artistas().sum{ artista => artista.habilidad() }
+	method magia() = self.artistasCompletos().sum{ artista => artista.habilidad() }
 	
 	method sePresenta(musico) = self.artistas().contains(musico)
 	
