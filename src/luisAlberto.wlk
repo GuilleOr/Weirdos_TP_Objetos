@@ -25,5 +25,5 @@ object luisAlberto inherits Musico ( 0 , #{}) {
 	}
 	
 	override method interpretaBien(cancion) = true 
-	override method condicionExtraInterpretacion(cancion) { }
+	//override method condicionExtraInterpretacion(cancion) { }
 }

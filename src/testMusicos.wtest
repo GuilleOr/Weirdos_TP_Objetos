@@ -29,12 +29,14 @@ describe "tests para los musicos" {
 	var joaquin = new DeGrupo(20, [ ], 5)
 
 	var lucia = new VocalistaPopular(70, [ ], "familia")
-	
 
 	var pimpinela = new Grupo()
+
 	var elEternoRetorno = new Banda()
 	var felix = new Representante(500)
-	
+
+	var pimpisole = new Banda()
+	var cachorro = new Representante(1982)
 
 	var cancionLaFamilia = new Cancion()
 	var cancionCisne = new Cancion()
@@ -53,7 +55,9 @@ describe "tests para los musicos" {
 	var remixLaFamilia = new CancionRemixada()
 
 	var mushup1 = new Mushup()
+
 	var presentacionPrix = new Presentacion()
+	var presentacionLaCueva = new Presentacion()
 
 	fixture {
 		pimpinela.agregarIntegrante(lucia)
@@ -85,17 +89,35 @@ describe "tests para los musicos" {
 		kike.tipo(new Imparero())
 		kike.precio(4000)
 		kike.tipoCobro(new CobroPorExpectativaInflacionaria(new Date(08, 01, 2018), 50))
-	
+
+		soledad.tipo(new Palabrero("amor"))
+		soledad.precio(6000)
+		soledad.tipoCobro(new CobroPorCantidadDeArtistas())
+		
 		elEternoRetorno.agregarMiembro(kike)
 		elEternoRetorno.agregarMiembro(luisAlberto)
 		elEternoRetorno.representante(felix)
+
+		pimpisole.agregarMiembro(lucia)
+		pimpisole.agregarMiembro(joaquin)
+		pimpisole.agregarMiembro(soledad)
+		pimpisole.representante(cachorro)
 		
-			
+		luisAlberto.precio(1000)
+		luisAlberto.tipoCobro(new CobroPorExpectativaInflacionaria(new Date(01,09,2017),20))
+		luisAlberto.guitarra(fender)
+
 	}
-	
-	method presentacionPrix(){
+	method presentacionLaCueva() {
+		presentacionLaCueva.lugar(laCueva)
+		presentacionLaCueva.fecha(new Date(05, 01, 2018))
+		presentacionLaCueva.sumarArtista(pimpisole)
+		return presentacionLaCueva
+	}
+
+	method presentacionPrix() {
 		presentacionPrix.lugar(prix)
-		presentacionPrix.fecha(new Date(30,06,2017))
+		presentacionPrix.fecha(new Date(30, 06, 2017))
 		presentacionPrix.sumarArtista(joaquin)
 		presentacionPrix.sumarArtista(soledad)
 		presentacionPrix.sumarArtista(elEternoRetorno)
@@ -538,7 +560,7 @@ describe "tests para los musicos" {
 		]))
 
 	}
-		test "Lucia ahora es imparera e interpretaBien..." {
+	test "Lucia ahora es imparera e interpretaBien..." {
 		lucia.tipo(new Imparero())
 		self.cancionCorazonAmericano()
 		self.cancionEres()
@@ -548,18 +570,72 @@ describe "tests para los musicos" {
 		self.cancionAlicia()
 		self.cancionCrisantemo()
 
-		assert.equals([cancionEres, cancionCrisantemo], lucia.bienInterpretadas([
+		assert.equals([ cancionEres, cancionCrisantemo ], lucia.bienInterpretadas([
 		cancionCorazonAmericano, cancionEres, cancionLaFamilia, cancionCisne, cancionAlmaDeDiamante, cancionAlicia, cancionCrisantemo
 		]))
 
 	}
-	
-		test "joaquin ahora cobra por expectativa inflacionaria"{
-			self.presentacionPrix()
-			joaquin.precio(1000)
-			joaquin.tipoCobro(new CobroPorExpectativaInflacionaria(new Date(01,02,2017), 20))
-			
-			assert.equals(1200, joaquin.tipoCobro().costo(presentacionPrix,joaquin))
-		}
 
+	test "joaquin ahora cobra por expectativa inflacionaria" {
+		self.presentacionPrix()
+		joaquin.precio(1000)
+		joaquin.tipoCobro(new CobroPorExpectativaInflacionaria(new Date(01, 02, 2017), 20))
+
+		assert.equals(1200, joaquin.tipoCobro().costo(presentacionPrix, joaquin))
+	}
+	
+	test "Joaquin ahora cobra por capacidad"{
+		self.presentacionLaCueva()
+		joaquin.precio(2500)
+		joaquin.tipoCobro(new CobroPorCapacidad(13000))
+		
+		
+		assert.equals(2500, joaquin.tipoCobro().costo(presentacionLaCueva, joaquin))
+		
+	}
+	
+		test "Joaquin ahora cobra por capacidad en prix"{
+		self.presentacionPrix()
+		joaquin.precio(2500)
+		joaquin.tipoCobro(new CobroPorCapacidad(13000))
+		
+		
+		assert.equals(2400, joaquin.tipoCobro().costo(presentacionPrix, joaquin))
+		
+	}
+	
+	test "el eterno retorno cobra 5500$ en prix"{
+		self.presentacionPrix()
+		
+		assert.equals(5500,elEternoRetorno.costoPresentacion(presentacionPrix))
+	}
+	
+	test "el productor de prix debe pagar 8500$"{
+		self.presentacionPrix()
+		
+		assert.equals(8500, presentacionPrix.costo())
+	}
+	
+	test "La habilidad del eterno retorno es 154"{
+		
+		assert.equals(154, elEternoRetorno.habilidad())
+	}
+
+	test "la magia de Prix es 234"{
+		
+		self.presentacionPrix()
+		
+		assert.equals(234, presentacionPrix.magia())
+	}
+	test "pimpisole no interpreta bien la cancion el cisne"{
+		self.cancionElCisne()
+		
+		assert.notThat(pimpisole.puedeTocarCancion(cancionCisne))
+	}
+	
+	test "el eterno retorno puede tocar crisantemo"{
+		self.cancionCrisantemo()
+		
+		assert.that(elEternoRetorno.puedeTocarCancion(cancionCrisantemo))
+	}
 }

@@ -6,10 +6,10 @@ class Banda {
 	;
 
 	method habilidad() = self.miembros().sum{ integrante =>
-	integrante.decimeTuHabilidad() } * 1.1
+	integrante.habilidad() } * 1.1
 
-	method costoPresentacionBanda(unShow) = self.miembros().sum{ integrante =>
-	integrante.precioPorTocarEn(unShow) }
+	method costoPresentacionBanda(presentacion) = self.miembros().sum{ integrante =>
+	integrante.tipoCobro().costo(presentacion, integrante) } 
 
 	method costoPresentacion(unShow) = self.costoPresentacionBanda(unShow) +
 	self.representante().montoQueCobra()
@@ -18,9 +18,9 @@ class Banda {
 	integrante.interpretaBien(unaCancion) })
 
 	method agregarMiembro(musico) {
-		if (! miembros.contains(musico)) {
-			//musico.banda(self)
-			miembros.add(musico)
+		if (!self.miembros().contains(musico)) {
+		//musico.banda(self)
+			self.miembros().add(musico)
 		}
 	}
 

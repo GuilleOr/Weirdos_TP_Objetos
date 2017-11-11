@@ -41,7 +41,7 @@ class Presentacion {
 
 	method capacidad() = lugar.capacidad(fecha)
 
-	method costo() = self.artistas().sum({ artista => artista.costo(self) })
+	method costo() = self.artistas().sum({ artista => artista.costo(self,artista) })
 
 	method condicionesParaParticipar() = condicionesParaParticipar
 
@@ -90,9 +90,9 @@ class CobroPorCapacidad {
 
 	method costo(presentacion, musico) {
 		if (presentacion.laCapacidadEsMayorA(self.capacidadMinimaDePersonas())) {
-			return musico.costo()
+			return musico.precio()
 		} else {
-			return musico.costo() - 100
+			return musico.precio() - 100
 		}
 	}
 }
