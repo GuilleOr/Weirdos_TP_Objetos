@@ -17,9 +17,9 @@ class Banda {
 	method puedeTocarCancion(unaCancion) = self.miembros().all({ integrante =>
 	integrante.interpretaBien(unaCancion) })
 
-	method agregarMiembroALaBanda(musico) {
+	method agregarMiembro(musico) {
 		if (! miembros.contains(musico)) {
-			musico.banda(self)
+			//musico.banda(self)
 			miembros.add(musico)
 		}
 	}

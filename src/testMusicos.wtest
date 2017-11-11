@@ -18,20 +18,23 @@ import representante.*
 import banda.*
 import Musico.*
 import Presentacion.*
+import laCueva.*
+import prix.*
 
 describe "tests para los musicos" {
-//var kike = new DeGrupo(60, [ ], 20)
-	var kike = new Musico(60, [ ])
+	var kike = new DeGrupo(60, [ ], 20)
 
 	var soledad = new VocalistaPopular(55, [ ], "amor")
 
-	//var joaquin = new DeGrupo(20, [ ], 5)
-	var joaquin = new Musico(20, [ ])
+	var joaquin = new DeGrupo(20, [ ], 5)
 
-	//var lucia = new VocalistaPopular(70, [ ], "familia")
-	var lucia = new Musico(70, [ ])
+	var lucia = new VocalistaPopular(70, [ ], "familia")
+	
 
 	var pimpinela = new Grupo()
+	var elEternoRetorno = new Banda()
+	var felix = new Representante(500)
+	
 
 	var cancionLaFamilia = new Cancion()
 	var cancionCisne = new Cancion()
@@ -50,6 +53,7 @@ describe "tests para los musicos" {
 	var remixLaFamilia = new CancionRemixada()
 
 	var mushup1 = new Mushup()
+	var presentacionPrix = new Presentacion()
 
 	fixture {
 		pimpinela.agregarIntegrante(lucia)
@@ -81,7 +85,21 @@ describe "tests para los musicos" {
 		kike.tipo(new Imparero())
 		kike.precio(4000)
 		kike.tipoCobro(new CobroPorExpectativaInflacionaria(new Date(08, 01, 2018), 50))
-
+	
+		elEternoRetorno.agregarMiembro(kike)
+		elEternoRetorno.agregarMiembro(luisAlberto)
+		elEternoRetorno.representante(felix)
+		
+			
+	}
+	
+	method presentacionPrix(){
+		presentacionPrix.lugar(prix)
+		presentacionPrix.fecha(new Date(30,06,2017))
+		presentacionPrix.sumarArtista(joaquin)
+		presentacionPrix.sumarArtista(soledad)
+		presentacionPrix.sumarArtista(elEternoRetorno)
+		return presentacionPrix
 	}
 	method mushup1() {
 		mushup1.canciones(cancionAlmaDeDiamante)
@@ -107,6 +125,7 @@ describe "tests para los musicos" {
 	}
 
 	method cancionLaFamilia() {
+		cancionLaFamilia.autor(joaquin)
 		cancionLaFamilia.nombre("LaFamilia")
 		cancionLaFamilia.duracion(264)
 		cancionLaFamilia.letra("Quiero brindar por mi gente sencilla, por el amor brindo por la familia")
@@ -129,6 +148,7 @@ describe "tests para los musicos" {
 	}
 
 	method cancionCorazonAmericano() {
+		cancionCorazonAmericano.autor(soledad)
 		cancionCorazonAmericano ( "corazonAmericano" )
 		cancionCorazonAmericano.duracion(154)
 		cancionCorazonAmericano.letra("Canta corazon, canta mas alto, que tu pena al fin se va marchando, el nuevo milenio ha de encontrarnos, junto corazon, como soniamos")
@@ -497,12 +517,49 @@ describe "tests para los musicos" {
 		self.cancionAlicia()
 		self.cancionCrisantemo()
 
-		assert.equals([
-		cancionLaFamilia, cancionCisne, cancionAlicia
+		assert.equals([ cancionLaFamilia, cancionCisne, cancionAlicia
 		], joaquin.bienInterpretadas([
 		cancionCorazonAmericano, cancionEres, cancionLaFamilia, cancionCisne, cancionAlmaDeDiamante, cancionAlicia, cancionCrisantemo
 		]))
 	}
+
+	test "Joaquin ahora es palabrero e interpretaBien..." {
+		joaquin.tipo(new Palabrero("xilofon"))
+		self.cancionCorazonAmericano()
+		self.cancionEres()
+		self.cancionLaFamilia()
+		self.cancionElCisne()
+		self.cancionAlmaDeDiamante()
+		self.cancionAlicia()
+		self.cancionCrisantemo()
+
+		assert.equals([ cancionLaFamilia ], joaquin.bienInterpretadas([
+		cancionCorazonAmericano, cancionEres, cancionLaFamilia, cancionCisne, cancionAlmaDeDiamante, cancionAlicia, cancionCrisantemo
+		]))
+
+	}
+		test "Lucia ahora es imparera e interpretaBien..." {
+		lucia.tipo(new Imparero())
+		self.cancionCorazonAmericano()
+		self.cancionEres()
+		self.cancionLaFamilia()
+		self.cancionElCisne()
+		self.cancionAlmaDeDiamante()
+		self.cancionAlicia()
+		self.cancionCrisantemo()
+
+		assert.equals([cancionEres, cancionCrisantemo], lucia.bienInterpretadas([
+		cancionCorazonAmericano, cancionEres, cancionLaFamilia, cancionCisne, cancionAlmaDeDiamante, cancionAlicia, cancionCrisantemo
+		]))
+
+	}
 	
+		test "joaquin ahora cobra por expectativa inflacionaria"{
+			self.presentacionPrix()
+			joaquin.precio(1000)
+			joaquin.tipoCobro(new CobroPorExpectativaInflacionaria(new Date(01,02,2017), 20))
+			
+			assert.equals(1200, joaquin.tipoCobro().costo(presentacionPrix,joaquin))
+		}
 
 }

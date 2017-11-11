@@ -63,6 +63,9 @@ class Presentacion {
 	method unSoloArtista() {
 		return self.cantidadArtistas() == 1
 	}
+	method laCapacidadEsMayorA(capacidad) = self.lugar().capacidad(self.fecha()) > capacidad
+	
+	method fechaEsAnteriorA(unaFecha) = unaFecha > self.fecha()
 }
 
 class CobroPorCantidadDeArtistas {
